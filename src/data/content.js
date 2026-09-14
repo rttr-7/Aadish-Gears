@@ -174,27 +174,27 @@ export const whyUs = [
 ];
 
 export const indianClients = [
-  "/logos/abb.svg",
-  "/logos/eaton.svg",
-  "/logos/emtork.svg",
-  "/logos/wipro.svg",
-  "/logos/metafold.svg",
-  "/logos/bonvario.svg",
-  "/logos/prabha.svg",
-  "/logos/synco.svg",
-  "/logos/nikhtish.svg",
-  "/logos/s-gear.svg",
-  "/logos/gr.svg",
-  "/logos/wohr.svg",
-  "/logos/switchgear.svg",
+  "logos/abb.svg",
+  "logos/eaton.svg",
+  "logos/emtork.svg",
+  "logos/wipro.svg",
+  "logos/metafold.svg",
+  "logos/bonvario.svg",
+  "logos/prabha.svg",
+  "logos/synco.svg",
+  "logos/nikhtish.svg",
+  "logos/s-gear.svg",
+  "logos/gr.svg",
+  "logos/wohr.svg",
+  "logos/switchgear.svg",
 ];
 
 export const internationalClients = [
-  "/logos/witte.svg",
-  "/logos/trexatbk.svg",
-  "/logos/ipark.svg",
-  "/logos/lodestar.svg",
-  "/logos/zeipal.svg",
+  "logos/witte.svg",
+  "logos/trexatbk.svg",
+  "logos/ipark.svg",
+  "logos/lodestar.svg",
+  "logos/zeipal.svg",
 ];
 
 export const footerLinks = [
