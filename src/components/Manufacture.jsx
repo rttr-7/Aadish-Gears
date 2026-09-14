@@ -7,18 +7,17 @@ export default function Manufacture() {
         <h2 className="font-display text-3xl font-bold text-navy sm:text-4xl">
           What We Manufacture
         </h2>
-        <p className="mt-3 max-w-2xl text-sm text-slate sm:text-base">
-          Five product families, designed and machined in-house from a
-          single custom gearbox to bulk production runs.
+        <p className="mt-3 text-sm text-slate sm:text-base">
+          Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-5 gap-4">
           {products.map((product) => (
             <div
               key={product.title}
               className="rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(11,39,80,0.06)]"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky text-action">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky text-black">
                 <span className="material-symbols-rounded text-[20px]" aria-hidden="true">
                   {product.icon}
                 </span>

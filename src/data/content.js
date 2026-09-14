@@ -44,24 +44,28 @@ export const products = [
     description:
       "Helical, Worm, Spur quarter-turn and combination gearboxes for electrical isolators, EVs, automation etc to required specs.",
   },
+
   {
-    icon: "settings_suggest",
+    icon: "hub",
     title: "Gears",
     description: "Spur, helical and worm gears precision-cut up to 350mm OD.",
   },
+
   {
-    icon: "all_inclusive",
+    icon: "link",
     title: "Sprockets",
     description:
       "Simplex to triplex, 3/8\" to 1\" sprockets for chain-driven mechanisms.",
   },
+
   {
-    icon: "linear_scale",
+    icon: "straighten",
     title: "Splines",
     description: "Precision spline shafts made to your exact dimensions.",
   },
+
   {
-    icon: "bolt",
+    icon: "sync",
     title: "Worm Shafts",
     description: "Hardened and ground worm shafts for smooth, quiet drives.",
   },
@@ -153,42 +157,44 @@ export const whyUs = [
     icon: "hub",
     title: "One-stop solution",
     description:
-      "Design, prototyping and bulk manufacturing under one roof, from a single drawing to production quantities.",
+      "Design, prototyping and bulk manufacturing\nunder one roof, from a single drawing\nto production quantities.",
   },
   {
     icon: "verified",
     title: "Precision & quality",
     description:
-      "Hardened and ground components, calibrated inspection equipment, and stage-wise quality reporting. ISO 9001:2015 certified.",
+      "Hardened and ground components, \ncalibrated inspection equipment, and \nstage-wise quality reporting. \nISO 9001:2015 certified.",
   },
   {
     icon: "public",
     title: "Trusted nationally & overseas",
     description:
-      "Supplying OEMs across India and to customers in the USA, Germany, Switzerland, Sweden and the UAE.",
+      "Supplying OEMs across India \nand to customers in the USA, \nGermany, Switzerland, Sweden \nand the UAE.",
   },
 ];
 
 export const indianClients = [
-  "ABB",
-  "Eaton",
-  "Emtork",
-  "Wipro Pari",
-  "Metalfold",
-  "Bonvario",
-  "Synco Industries",
-  "Nikhilsh",
-  "S-Gear",
-  "Wohr",
-  "Switchgear Manufacturing Co.",
+  "/logos/abb.svg",
+  "/logos/eaton.svg",
+  "/logos/emtork.svg",
+  "/logos/wipro.svg",
+  "/logos/metafold.svg",
+  "/logos/bonvario.svg",
+  "/logos/prabha.svg",
+  "/logos/synco.svg",
+  "/logos/nikhtish.svg",
+  "/logos/s-gear.svg",
+  "/logos/gr.svg",
+  "/logos/wohr.svg",
+  "/logos/switchgear.svg",
 ];
 
 export const internationalClients = [
-  "Witte",
-  "Trexatek",
-  "Lark Robotic Parking",
-  "Lodestar",
-  "Zeipal",
+  "/logos/witte.svg",
+  "/logos/trexatbk.svg",
+  "/logos/ipark.svg",
+  "/logos/lodestar.svg",
+  "/logos/zeipal.svg",
 ];
 
 export const footerLinks = [
