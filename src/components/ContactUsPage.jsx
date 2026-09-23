@@ -1,0 +1,213 @@
+import React from 'react';
+
+export default function ContactUsPage() {
+  // Sample array for product gallery - update image paths as needed
+  const productImages = [
+    { id: 1, src: "/Aadish-Gears/images/gear1.png", alt: "Gear 1" },
+    { id: 2, src: "/Aadish-Gears/images/gear2.png", alt: "Gear 2" },
+    { id: 3, src: "/Aadish-Gears/images/gear3.png", alt: "Gear 3" },
+    { id: 4, src: "/Aadish-Gears/images/gear4.png", alt: "Gear 4" },
+    { id: 5, src: "/Aadish-Gears/images/gear5.png", alt: "Gear 5" },
+    { id: 6, src: "/Aadish-Gears/images/gear6.png", alt: "Gear 6" },
+    { id: 7, src: "/Aadish-Gears/images/gear7.png", alt: "Gear 7" },
+    { id: 8, src: "/Aadish-Gears/images/gear8.png", alt: "Gear 8" },
+    { id: 9, src: "/Aadish-Gears/images/gear9.png", alt: "Gear 9" },
+  ];
+
+  return (
+    <div className="bg-white text-navy font-sans">
+      {/* Hero Header Section */}
+      <section className="relative overflow-hidden bg-navy">
+        <div className="relative flex min-h-[220px] flex-col justify-end lg:min-h-[260px]">
+          {/* Background photo */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/Aadish-Gears/images/Gear.png"
+              alt="Gears background"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+
+          {/* Solid Dark Navy Bottom Banner */}
+          <div className="relative z-10 w-full border-t border-white/10 bg-navy/95 shadow-2xl">
+            {/* Grid pattern overlay */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+                backgroundSize: "44px 44px, 44px 44px",
+              }}
+            />
+
+            {/* Content Container */}
+            <div className="relative mx-auto max-w-7xl px-6 py-4 lg:px-10 lg:py-5">
+              <div className="w-full max-w-3xl text-left">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-mint">
+                  Get in touch with us
+                </p>
+                <h1 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                  Are you ready with your enquiry?
+                </h1>
+                <p className="mt-1 text-xs text-sky/90 sm:text-sm">
+                  Send us your requirement below and our team will get back with a quote.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {}
+      {/* Main Form & Contact Details Section */}
+      <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+          
+          {/* Left Column: Compact Form & Product Grid */}
+          <div>
+            <h2 className="mb-1 font-display text-2xl font-bold text-navy sm:text-3xl">
+              Send us your requirement
+            </h2>
+            <p className="mb-4 text-xs text-slate-500">
+              <span className="font-semibold text-navy">*</span> indicates a required field
+            </p>
+
+            {/* Compact Form */}
+            <form className="grid gap-3 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+              <label className="block text-xs font-semibold text-navy">
+                <span className="mb-1 block">Full Name *</span>
+                <input
+                  type="text"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                />
+              </label>
+
+              <label className="block text-xs font-semibold text-navy">
+                <span className="mb-1 block">Company Name</span>
+                <input
+                  type="text"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                />
+              </label>
+
+              <label className="block text-xs font-semibold text-navy">
+                <span className="mb-1 block">Email Address *</span>
+                <input
+                  type="email"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                />
+              </label>
+
+              <label className="block text-xs font-semibold text-navy">
+                <span className="mb-1 block">Phone Number *</span>
+                <input
+                  type="tel"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                />
+              </label>
+
+              <label className="block text-xs font-semibold text-navy sm:col-span-2">
+                <span className="mb-1 block">Country *</span>
+                <select className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                  <option>India</option>
+                </select>
+              </label>
+
+              <label className="block text-xs font-semibold text-navy sm:col-span-2">
+                <span className="mb-1 block">Your Requirement *</span>
+                <textarea
+                  rows={2}
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  placeholder="Tell us what you need — product type, specs or drawing reference, and quantity."
+                />
+              </label>
+
+              <div className="mt-1 sm:col-span-2">
+                <button
+                  type="submit"
+                  className="rounded-lg bg-blue-600 px-5 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                >
+                  Send Enquiry
+                </button>
+              </div>
+            </form>
+
+            {/* Product Image Grid (3x3 matching target design) */}
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {productImages.map((product) => (
+                <div key={product.id} className="flex items-center justify-center rounded-lg bg-slate-50 p-2 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <img
+                    src={product.src}
+                    alt={product.alt}
+                    className="max-h-28 w-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Contact Details Sidebar */}
+          <aside className="space-y-5 pt-1">
+            {/* Call Us */}
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-rounded text-xl text-navy mt-0.5">call</span>
+              <div>
+                <h3 className="font-display text-base font-bold text-navy">Call Us</h3>
+                <p className="mt-0.5 text-xs text-slate-600 font-medium">+91 92256 43290</p>
+                <p className="text-xs text-slate-600 font-medium">+91 74990 50575</p>
+              </div>
+            </div>
+
+            {/* Email Us */}
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-rounded text-xl text-navy mt-0.5">mail</span>
+              <div>
+                <h3 className="font-display text-base font-bold text-navy">Email Us</h3>
+                <p className="mt-0.5 text-xs text-slate-600 font-medium">aadishgears@yahoo.co.in</p>
+                <p className="text-xs text-slate-600 font-medium">sales@aadishgears.com</p>
+              </div>
+            </div>
+
+            {/* Courier & Logistics */}
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-rounded text-xl text-navy mt-0.5">local_shipping</span>
+              <div>
+                <h3 className="font-display text-base font-bold text-navy">Courier &amp; Logistics</h3>
+                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                  Both Trackon Couriers and DTDC operate offices right in Narhe (411041), so sample and material dispatch to and from our facility is straightforward.
+                </p>
+              </div>
+            </div>
+
+            {/* Factory & Office */}
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-rounded text-xl text-navy mt-0.5">location_on</span>
+              <div>
+                <h3 className="font-display text-base font-bold text-navy">Factory &amp; Office</h3>
+                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                  Sr. No. 23/3/1, Milkat No. 28/2, Shed No 2 Wadekar Industrial Estate, Near Siddhi Chowk, Narhe, Pune 411041, MH, India
+                </p>
+              </div>
+            </div>
+
+            {/* Map of the shop */}
+            <div className="mt-5">
+              <p className="mb-1.5 text-xs font-semibold text-navy">Aadish Gears &amp; Transmission Pvt. Ltd.</p>
+              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                <iframe
+                  title="Aadish Gears Shop Location"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d766.5996703284125!2d73.82567328026647!3d18.438025815931777!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2958fcb83f527%3A0x6c04d3d87819ea42!2sAadish%20Gears%20%26%20Transmission%20Pvt%20Ltd%20-%20Transmission%20Products%20Manufacturer!5e0!3m2!1sen!2sus!4v1790146739161!5m2!1sen!2sus"
+                  className="h-[210px] w-full border-0"
+                  loading="lazy"
+                  allowFullScreen=""
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -16,9 +16,9 @@ export default function Hero() {
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-mint">
             Precision transmission products manufacturing
           </p>
-          <h1 className="w-full max-w-7xl font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[68px]">
-  Customized Gears, Gearboxes and Sprockets, engineered to desired spec
-</h1>
+          <h1 className="w-full max-w-7xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[60px]">
+            Customized Gears, Gearboxes and Sprockets, engineered to desired spec
+          </h1>
           <p className="mt-6 max-w-md text-base text-sky/90">
             We design &amp; manufacture precision transmission products in
             bulk for OEM&rsquo;s across the globe

@@ -1,6 +1,6 @@
 export const nav = [
   { label: "Home", href: "#home" },
-  { label: "About Us", href: "#why-us" },
+  { label: "About Us", href: "#about-us" },
   { label: "Our Products", href: "#products" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact Us", href: "#contact" },
@@ -198,7 +198,7 @@ export const internationalClients = [
 ];
 
 export const footerLinks = [
-  { label: "About Us", href: "#why-us" },
+  { label: "About Us", href: "#about-us" },
   { label: "Our Products", href: "#products" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact Us", href: "#contact" },

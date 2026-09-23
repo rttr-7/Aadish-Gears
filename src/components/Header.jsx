@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav } from "../data/content";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#home");
+
+  useEffect(() => {
+    const updateActive = () => {
+      const hash = window.location.hash || "#home";
+      setActive(hash);
+    };
+
+    updateActive();
+    window.addEventListener("hashchange", updateActive);
+
+    return () => window.removeEventListener("hashchange", updateActive);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-mist">
@@ -23,12 +36,12 @@ export default function Header() {
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {nav.map((item, i) => (
+          {nav.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-action ${
-                i === 0 ? "text-action" : "text-slate"
+              className={`text-sm font-medium transition-colors ${
+                active === item.href ? "text-action" : "text-slate hover:text-action"
               }`}
             >
               {item.label}
@@ -61,7 +74,9 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium text-slate hover:text-action"
+                className={`text-sm font-medium ${
+                  active === item.href ? "text-action" : "text-slate hover:text-action"
+                }`}
               >
                 {item.label}
               </a>
