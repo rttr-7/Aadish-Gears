@@ -20,7 +20,11 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <div className="h-[280px] bg-[linear-gradient(120deg,#8a95aa,#5d6577_45%,#3d465b)]" />
+      <img
+        src="/Aadish-Gears/images/Gearsabtus.png"
+        alt="Aadish Gears' precision gears, gearbox, and sprockets"
+        className="block h-auto w-full"
+      />
 
       <StorySection />
       <PositioningSection />
@@ -36,17 +40,12 @@ export default function AboutUs() {
               Continuous development, upgradation and training. A one-stop solution for every customer&apos;s needs, with customer satisfaction as the goal and long-term relationships as the foundation.
             </h2>
           </div>
-          <div className="flex h-[280px] items-center justify-center rounded-2xl bg-[linear-gradient(150deg,#edf4ff,#dfe9fb)]">
-            <svg width="55%" height="55%" viewBox="0 0 160 120" fill="none">
-              <g fill="#B9CCEF">
-                <rect x="10" y="90" width="18" height="18" /><rect x="34" y="90" width="18" height="18" />
-                <rect x="58" y="90" width="18" height="18" /><rect x="82" y="90" width="18" height="18" />
-                <rect x="22" y="68" width="18" height="18" /><rect x="46" y="68" width="18" height="18" />
-                <rect x="70" y="68" width="18" height="18" />
-                <rect x="34" y="46" width="18" height="18" /><rect x="58" y="46" width="18" height="18" />
-                <rect x="46" y="24" width="18" height="18" fill="#2F5FE0" />
-              </g>
-            </svg>
+          <div className="flex h-[280px] items-center justify-center overflow-hidden">
+            <img
+              src="/Aadish-Gears/images/Vision.png"
+              alt="A hand placing a wooden block on a balanced stack, representing continuous development and growth"
+              className="h-full w-full object-contain"
+            />
           </div>
         </div>
       </section>

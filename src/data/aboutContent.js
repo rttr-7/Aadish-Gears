@@ -58,6 +58,48 @@ export const VENDORS = [
   },
 ];
 
+export const MACHINERY = [
+  { name: "CNC Turning Center", make: "JYOTI", quantity: 3, details: "OD 250 mm/Max Length 500mm Siemens controls" },
+  { name: "CNC Turning Center", make: "ACE", quantity: 1, details: "OD 200 mm/Max Length 500mm Siemens controls" },
+  { name: "VMC Drill Tap Center", make: "Stama", quantity: 1, details: "Bed Size 500 x 250, BT30, 12 Stations Fanuc controls" },
+  { name: "VMC 4 Axis Machine", make: "ACE", quantity: 1, details: "4 Axis, Bed Size 650 x 500, BT40, 12 Stations, Siemens controls" },
+  { name: "VMC Machine", make: "ACE", quantity: 1, details: "Bed Size 300 x 300 x 350, BT40, 12 Stations, Fanuc controls" },
+  { name: "CNC Gear Hobbing Machine", make: "Technohawk", quantity: 1, details: "Day Light 750mm/400mm, 6 module, Universal" },
+  { name: "Gear Hobbing Machine", make: "FD320 Cugir", quantity: 2, details: "Day Light 750mm/400mm, 6 module, Universal, PLC Controls" },
+  { name: "Gear Shaping Machine", make: "Toss OH4", quantity: 1, details: "DayLight 100mm/250mm, 4 module, Spur/Internal, PLC Controls" },
+  { name: "Internal Broaching Machine", make: "Shiv", quantity: 1, details: "12 tonne, 1500 mm Stroke" },
+  { name: "Keyway Milling Machine", make: "Icon", quantity: 1, details: "Bed Size 400mm, Key way upto 16mm x 200mm" },
+  { name: "Vertical slotting Machine", make: "", quantity: 1, details: '8\" Stroke, Bed size 200 x 200 Suitable for 4mm to 14mm Keyway' },
+  { name: "Polygon Turning", make: "Ujwal", quantity: 1, details: "Bed Size 720 mm 3 HP Motor," },
+  { name: "Milling Machine", make: "Milwaukee", quantity: 1, details: "Bed Size 800mm x 250mm 5 HP Motor Horizontal, Auto Feed" },
+  { name: "Bandsaw Automatic", make: "Pragati", quantity: 1, details: "200 mm, With support Bed, Fully Automatic" },
+  { name: "Bandsaw Manual", make: "Omkar", quantity: 2, details: "200 mm, Semi Hydraulic" },
+  { name: "Radial Drilling Machine", make: "Madhav", quantity: 1, details: '3/4\" Capacity, 2HP Motor' },
+  { name: "Pedestrial Drilling Machines", make: "Suraj", quantity: 3, details: '1/2\" Capacity, 1 HP Motor' },
+  { name: "Center Lathe", make: "Suraj", quantity: 1, details: "Bed Size 4.5 Feet, 2HP Motor" },
+  { name: "Hydraulic Press", make: "Nishant", quantity: 1, details: "5000 Kg Hydraulic" },
+  { name: "Assembly Machine", make: "Laxmi", quantity: 1, details: "Semi Automatic Assembly Line with Hydraulic Powerpack" },
+];
+
+export const INSPECTION_INSTRUMENTS = [
+  { type: "Micrometers 0-25", quantity: "Six", make: "Mitutoyo" },
+  { type: "Micrometers 25-50", quantity: "Four", make: "Mitutoyo" },
+  { type: "Micrometers 50-75", quantity: "Four", make: "Mitutoyo" },
+  { type: "Micrometers 75-100", quantity: "One", make: "Mitutoyo" },
+  { type: "Micrometers 100-125", quantity: "One", make: "Mitutoyo" },
+  { type: "Micrometers 125-150", quantity: "One", make: "Mitutoyo" },
+  { type: "Micrometers 150-175", quantity: "One", make: "Mitutoyo" },
+  { type: "Span Micrometers 0-25", quantity: "Four", make: "Mitutoyo" },
+  { type: "Span Micrometers 25-50", quantity: "Three", make: "Mitutoyo" },
+  { type: "Vernier Calipers", quantity: "Three", make: "Mitutoyo" },
+  { type: "Digital Vernier Calipers", quantity: "Two", make: "Forbes" },
+  { type: "Height Gauge", quantity: "Three", make: "Mitutoyo" },
+  { type: "Plug Gauges & Snap Gauges", quantity: "As per parts", make: "Local Make" },
+  { type: "Bore Dial Gauge (10mm to 150mm)", quantity: "One Set", make: "Mitutoyo" },
+  { type: "Worm Gear CD Inspection Machine", quantity: "One", make: "Minimatic" },
+  { type: "PCD Run out Checking Unit", quantity: "One", make: "Minimatic" },
+];
+
 export const TABS = [
   {
     label: "Manufacturing Excellence",
@@ -77,58 +119,63 @@ export const TABS = [
   {
     label: "Assembly Infrastructure",
     heading: "Assembly Infrastructure",
-    bullets: [
-      "Dedicated assembly bays",
-      "Torque and run-in testing",
-      "Sub-assembly staging areas",
-      "Jigs built for repeat accuracy",
-    ],
     paragraphs: [
-      "Assembly is organized into stations sized for our gearbox and sprocket ranges, so work in progress moves predictably from sub-assembly through to final testing.",
+      "Moving beyond traditional manual assembly, we continuously invest in automation to enhance our assembly infrastructure. This enables us to improve quality, consistency and production efficiency while meeting the evolving needs of our customers.",
     ],
-    cta: "View Assembly Process",
   },
   {
     label: "Quality Inspection",
     heading: "Quality Inspection",
     bullets: [
-      "Dimensional and profile checks",
-      "Calibrated measuring instruments",
-      "In-process and final inspection",
-      "Material test certificates on request",
+      "In-house inspection facility",
+      "Precision measuring equipment",
+      "Regular instrument calibration",
+      "ISO-compliant inspection procedures",
+      "Detailed inspection records",
+      "Specialized gear inspection",
+      "ISO-certified third-party inspection partners",
     ],
     paragraphs: [
-      "Every batch is checked against drawing tolerances at each stage of production, not only at final dispatch, so issues are caught close to where they occur.",
+      "Quality is built into every stage of our process, from manufacturing and inspection to final delivery.",
     ],
     cta: "View Quality Process",
   },
   {
     label: "Infrastructure & People",
     heading: "Infrastructure & People",
-    bullets: [
-      "Purpose-built shop floor layout",
-      "Trained machine and shop operators",
-      "Steady, low-turnover workforce",
-      "On-site stores and logistics",
+    bulletGroups: [
+      {
+        heading: "Location",
+        items: [
+          "Narhe Industrial Area, Pune",
+          "3–4 km from central Pune",
+          "10–15 km from major transport hubs",
+          "Strong logistics connectivity",
+        ],
+      },
+      {
+        heading: "People",
+        items: [
+          "Access to skilled & semi-skilled workforce",
+          "In-house training programs",
+          "Continuous skill development",
+          "Equal employment opportunities",
+          "Encouraging women and persons with disabilities",
+        ],
+      },
     ],
-    paragraphs: [
-      "A stable, experienced team paired with a shop floor laid out for our specific product mix keeps handovers between machining, assembly and dispatch efficient.",
-    ],
-    cta: "Meet Our Team",
   },
   {
     label: "Growth & Future",
     heading: "Growth & Future",
     bullets: [
-      "~20% annual growth, sustained since 2012",
-      "Deliberate, non-speculative expansion",
-      "Reinvestment in machinery each year",
-      "Long-term customer relationships",
+      "Steady, sustainable growth",
+      "1–2 new products targeted annually",
+      "Continuous capacity expansion",
+      "Ongoing equipment & process upgrades",
+      "New customer development",
+      "Dedicated facilities planned for Gear Boxes, Gear Parts & Sprockets"
     ],
-    paragraphs: [
-      "We add new products and customers gradually rather than chasing scale, which is what has kept quality consistent through two decades of growth.",
-    ],
-    cta: "Our Roadmap",
   },
 ];
 
