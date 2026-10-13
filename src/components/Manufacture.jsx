@@ -3,7 +3,7 @@ import { products } from "../data/content";
 export default function Manufacture() {
   return (
     <section id="products" className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
-      <div className="rounded-3xl bg-sky/60 p-8 sm:p-12">
+      <div className="rounded-3xl bg-sky/60 p-5 sm:p-8 lg:p-12">
         <h2 className="font-display text-3xl font-bold text-navy sm:text-4xl">
           What We Manufacture
         </h2>
@@ -11,7 +11,7 @@ export default function Manufacture() {
           Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.
         </p>
 
-        <div className="mt-10 grid grid-cols-5 gap-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:mt-10 xl:grid-cols-5">
           {products.map((product) => (
             <div
               key={product.title}

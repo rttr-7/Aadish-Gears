@@ -195,13 +195,21 @@ export default function ContactUsPage() {
               <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                 <iframe
                   title="Aadish Gears Shop Location"
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d766.5996703284125!2d73.82567328026647!3d18.438025815931777!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2958fcb83f527%3A0x6c04d3d87819ea42!2sAadish%20Gears%20%26%20Transmission%20Pvt%20Ltd%20-%20Transmission%20Products%20Manufacturer!5e0!3m2!1sen!2sus!4v1790146739161!5m2!1sen!2sus"
-                  className="h-[210px] w-full border-0"
-                  loading="lazy"
+                  src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
+                  className="h-[220px] w-full border-0 sm:h-[210px]"
+                  loading="eager"
                   allowFullScreen=""
                   referrerPolicy="strict-origin-when-cross-origin"
                 />
               </div>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=18.4380258%2C73.8256733"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-block text-xs font-semibold text-action underline underline-offset-2 hover:text-action-hover"
+              >
+                Open in Google Maps
+              </a>
             </div>
           </aside>
 

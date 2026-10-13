@@ -1,203 +1,17 @@
 import { useState } from "react";
-
-const electricalIsolatorProducts = [
-  {
-    title: "AGTPL 765 KVA E/S Gearbox",
-    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.png",
-    bullets: [
-      "Motor details: 1.0 HP foot mounting, 1400 RPM",
-      "Aadish Gears designed",
-      "Combination gears type",
-      "Reduction Ratio: 1:843",
-      "SG iron housing with hardened gears",
-    ],
-    application: "Electrical Disconnectors (Isolators) 765 KvA and above",
-  },
-  {
-    title: "AGTPL 765 KVA M/S Gearbox",
-    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.png",
-    bullets: [
-      "Motor details: 1.0 HP foot mounting, 1400 RPM",
-      "Aadish Gears designed",
-      "Combination gears type",
-      "Reduction ratio: 1:1247.50",
-      "SG iron housing, hardened gears",
-    ],
-    application: "Electrical isolators 765 kVA and above",
-  },
-  {
-    title: "ISO 0.5 HP Gearbox",
-    image: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.png",
-    bullets: [
-      "Motor details: 0.5 HP foot mounting, 1400 RPM",
-      "Customer designed",
-      "Combination gears type",
-      "Reduction ratio: 1:676",
-    ],
-    application: "Electrical isolators 230 kVA and above",
-  },
-  {
-    title: "ISO 1.0 HP Gearbox",
-    image: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.png",
-    bullets: [
-      "Motor details: 1.0 HP foot mounting, 1400 RPM",
-      "Customer designed",
-      "Combination gears type",
-      "Reduction ratio: 1:728",
-    ],
-    application: "Electrical isolators 230 kVA and above",
-  },
-];
-
-const helicalGearboxProducts = [
-  {
-    title: "NK 600 Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/NK%20600%20HELICAL%20GEARBOX.png",
-    bullets: [
-      "With Dual Output Shaft",
-      "Can be operated both by Motor as well as Manually",
-      "Can be used as a Speed Reducer as well as Speed increaser Gear Box",
-      "Aadish Gears Designed",
-      "Reduction Ratio: 1:56.15",
-    ],
-    applications: ["Air Purifying Systems", "Industrial Applications", "EV", "Electricity Generation"],
-  },
-  {
-    title: "NK 180 Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/NK%20180%20HELICAL%20GEARBOX.png",
-    bullets: [
-      "Single Output Shaft",
-      "Can be operated both by Motor as well as Manually",
-      "Can be used as a Speed Reducer as well as Speed increaser Gear Box",
-      "Aadish Gears Designed",
-      "Reduction Ratio: 1:56.15",
-    ],
-    applications: ["Air Purifying Systems", "Industrial Applications", "EV", "Electricity Generation"],
-  },
-  {
-    title: "Inline Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.png",
-    bullets: [
-      "Aadish Gears Designed",
-      "Reduction Ratio: 1:68.66",
-      "Type of Gearbox: Helical Gears",
-    ],
-    applications: ["All Industries", "Any"],
-  },
-];
-
-const gearboxes = [
-  {
-    label: "Electrical Isolator",
-  },
-  {
-    label: "Helical Gear Boxes",
-  },
-  {
-    label: "EV Gear Boxes",
-    title: "EV Gearbox",
-    image: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.png",
-    bullets: [
-      "Aadish Gears Designed",
-      "Type of Gear Box: Helical suitable for high RPM Motor (6000 RPM)",
-      "Reduction Ratio: 1:8.063",
-      "Pay Load 500 Kg. Tested for 20 Degree Gradient",
-    ],
-    applications: ["Electric Transport Vehicle (Three Wheeler)"],
-  },
-  {
-    label: "Worm Gear Boxes",
-    title: "Worm Gearbox",
-    image: "/Aadish-Gears/images/Gallery/WORM%20GEARBOX.png",
-    bullets: [
-      "Motor Details: Suitable for 0.5 HP Motor",
-      "Aadish Gears Designed",
-      "Type of Gear Box: Worm/Worm Wheel",
-      "Reduction Ratio: 1:40",
-    ],
-    applications: ["All Industries"],
-  },
-  {
-    label: "Quarter Turn Gear Boxes",
-    title: "Quarter Turn Gearbox",
-    image: "/Aadish-Gears/images/Gallery/QUARTER%20TURN%20GEARBOX.png",
-    bullets: [
-      "Heavy Duty",
-      "CI Casting Housing",
-      "Copper Alloy Gear with Hardened Shaft",
-      "Reduction Ratio: 1:36",
-    ],
-    applications: ["Electrical Actuators", "Other Industrial Applications"],
-  },
-];
-
-const gearTypes = [
-  {
-    label: "Spur Gears",
-    title: "Spur Gears",
-    image: "/Aadish-Gears/images/Gallery/SPUR%20GEAR.png",
-    bullets: [
-      "The Spur Gears can be manufactured from 0.8 Module to 6 Module with a minimum outside diameter of 8 mm to 400 mm",
-      "We can also design Gears as per the customer’s requirement",
-      "Cluster Gears also include our product range",
-
-      "All type of Spur Gears",
-      "Maximum OD 350 mm, Minimum OD 20mm",
-      "0.8 Module to 6 Module",
-    ],
-    showCatalog: true,
-  },
-  {
-    label: "Helical Gears",
-    title: "Helical Gears",
-    image: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.png",
-    bullets: [
-      "All type of Helical Gears",
-      "Maximum OD 350 mm, Minimum OD 20mm",
-      "0.8 Module to 6 Module",
-    ],
-    description: [
-      "Similar to Spur Gears, Helical Gears can also be manufactured from 0.8 Module to 6 Module with any Helix Angle. Helical Gears confirming to any class can be manufactured. Helical Gears can also be designed to match the Customer’s requirements.",
-    ],
-  },
-  {
-    label: "Worm Gears",
-    title: "Worm Gears",
-    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.JPG",
-    bullets: [
-      "All type of Worm Gears",
-      "Maximum OD 350 mm, Minimum OD 20mm",
-      "0.8 Module to 5.0 Module",
-    ],
-    description: [
-      "Worm Gears are manufactured to the required specifications with required accuracy. Worm Gears can be manufactured from 0.8 Module to 6 Module with a maximum diameter of 350 mm. Worm Gears can be manufactured from all type of materials viz. Cast Iron, SG Iron, Alloy Steel, Aluminum Bronze, Phosphor Bronze, etc. Worm And Worm Gear Pairs can also be designed & manufactured.",
-    ],
-  },
-  {
-    label: "Internal Gears",
-    title: "Internal Gears",
-    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.JPG",
-    bullets: [],
-    description: [
-      "We can manufacture Internal Gear having minimum ID of 30 mm. The internal gears can be manufactured from 0.5 module capacity to 3 Module Capacity. Internal Gears having smaller ID,s can also be manufactured by way of Broaching.",
-    ],
-  },
-];
-
-const promises = [
-  ["precision_manufacturing", "High-volume Manufacturing"],
-  ["mail", "Fast Response"],
-  ["local_shipping", "On-Time Delivery"],
-  ["verified", "Certified Quality"],
-  ["currency_rupee", "Competitive Pricing"],
-  ["task_alt", "Zero-Defect Production"],
-];
+import {
+  electricalIsolatorProducts,
+  gearboxes,
+  gearTypes,
+  helicalGearboxProducts,
+  promises,
+} from "../data/productsPage";
 
 function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
   const desktopColumns = items.length === 4 ? "lg:grid-cols-4 xl:grid-cols-4" : "lg:grid-cols-3 xl:grid-cols-5";
 
   return (
-    <div className={`mt-5 grid grid-cols-2 border-b border-slate/20 sm:grid-cols-3 ${desktopColumns}`} role="tablist" aria-label={label}>
+    <div className={`mt-5 flex min-w-0 gap-5 overflow-x-auto border-b border-slate/20 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:overflow-visible ${desktopColumns}`} role="tablist" aria-label={label}>
       {items.map((item, index) => (
         <button
           key={item.label}
@@ -212,7 +26,7 @@ function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
               });
             }
           }}
-          className={`border-b-2 px-3 py-3 text-sm font-bold transition-colors xl:whitespace-nowrap ${
+          className={`shrink-0 whitespace-nowrap border-b-2 px-3 py-3 text-sm font-bold transition-colors sm:shrink sm:whitespace-normal xl:whitespace-nowrap ${
             index === selected ? "border-action text-action" : "border-transparent text-slate hover:text-action"
           }`}
         >
@@ -245,14 +59,73 @@ function ProductFeature({ title, image, alt, description, details, imageMaxWidth
   );
 }
 
+function ProductCarousel({ products, selected, onSelect, label }) {
+  const product = products[selected];
+  const applications = product.applications ?? [product.application];
+
+  return (
+    <div>
+      <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
+        <div className="flex h-full items-center justify-center bg-white p-6">
+          <img src={product.image} alt={product.title} className="aspect-[16/9] w-full max-w-[500px] rounded-[6px] object-contain" />
+        </div>
+        <div>
+          <h3 className="font-display text-lg font-bold">{product.title}</h3>
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-black">
+            {product.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+          </ul>
+          <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-black">
+            <span>Application:</span>
+            <div className="flex flex-wrap gap-2">
+              {applications.map((application) => (
+                <span key={application} className="inline-flex max-w-full items-center rounded-full border border-action/40 bg-sky/30 px-3 py-1.5 text-xs font-semibold text-action">
+                  {application}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-6 flex items-center justify-center gap-5 bg-white py-2" aria-label={`${label} products`}>
+        <button
+          type="button"
+          aria-label={`Previous ${label} product`}
+          onClick={() => onSelect((selected - 1 + products.length) % products.length)}
+          className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
+        >
+          <span aria-hidden="true">&#8249;</span>
+        </button>
+        <div className="flex items-center gap-2" role="group" aria-label={`Choose ${label} product`}>
+          {products.map((item, index) => (
+            <button
+              key={item.title}
+              type="button"
+              aria-label={`Show ${item.title}`}
+              aria-current={index === selected ? "true" : undefined}
+              onClick={() => onSelect(index)}
+              className={`size-2.5 rounded-full transition-colors ${index === selected ? "bg-[#0d1b3e]" : "bg-[#ccc] hover:bg-[#aaa]"}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label={`Next ${label} product`}
+          onClick={() => onSelect((selected + 1) % products.length)}
+          className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
+        >
+          <span aria-hidden="true">&#8250;</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function ProductsPage() {
   const [gearboxIndex, setGearboxIndex] = useState(0);
   const [isolatorProductIndex, setIsolatorProductIndex] = useState(0);
   const [helicalProductIndex, setHelicalProductIndex] = useState(0);
   const [gearIndex, setGearIndex] = useState(0);
   const gearbox = gearboxes[gearboxIndex];
-  const isolatorProduct = electricalIsolatorProducts[isolatorProductIndex];
-  const helicalProduct = helicalGearboxProducts[helicalProductIndex];
   const gear = gearTypes[gearIndex];
 
   return (
@@ -280,110 +153,13 @@ export default function ProductsPage() {
           <h2 id="gearbox-title" className="font-display text-2xl font-bold">Customized Gears Boxes</h2>
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearboxes} selected={gearboxIndex} onSelect={setGearboxIndex} label="Gearbox types" scrollTargetId="gearbox-panel" />
-          {gearboxIndex === 0 ? (
-            <div>
-              <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
-                <div className="flex h-full items-center justify-center bg-white p-6">
-                  <img src={isolatorProduct.image} alt={isolatorProduct.title} className="aspect-[16/9] w-full max-w-[500px] rounded-[6px] object-contain" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold">{isolatorProduct.title}</h3>
-                  <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-black">
-                    {isolatorProduct.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-                  </ul>
-                  <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-black">
-                    <span>Application:</span>
-                    <span className="inline-flex max-w-full items-center rounded-full border border-action/40 bg-sky/30 px-3 py-1.5 text-xs font-semibold text-action">
-                      {isolatorProduct.application}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 flex items-center justify-center gap-5 bg-white py-2" aria-label="Electrical Isolator products">
-                <button
-                  type="button"
-                  aria-label="Previous Electrical Isolator product"
-                  onClick={() => setIsolatorProductIndex((isolatorProductIndex - 1 + electricalIsolatorProducts.length) % electricalIsolatorProducts.length)}
-                  className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
-                >
-                  <span aria-hidden="true">&#8249;</span>
-                </button>
-                <div className="flex items-center gap-2" role="group" aria-label="Choose Electrical Isolator product">
-                  {electricalIsolatorProducts.map((product, index) => (
-                    <button
-                      key={product.title}
-                      type="button"
-                      aria-label={`Show ${product.title}`}
-                      aria-current={index === isolatorProductIndex ? "true" : undefined}
-                      onClick={() => setIsolatorProductIndex(index)}
-                      className={`size-2.5 rounded-full transition-colors ${index === isolatorProductIndex ? "bg-[#0d1b3e]" : "bg-[#ccc] hover:bg-[#aaa]"}`}
-                    />
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  aria-label="Next Electrical Isolator product"
-                  onClick={() => setIsolatorProductIndex((isolatorProductIndex + 1) % electricalIsolatorProducts.length)}
-                  className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
-                >
-                  <span aria-hidden="true">&#8250;</span>
-                </button>
-              </div>
-            </div>
-          ) : gearboxIndex === 1 ? (
-            <div>
-              <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
-                <div className="flex h-full items-center justify-center bg-white p-6">
-                  <img src={helicalProduct.image} alt={helicalProduct.title} className="aspect-[16/9] w-full max-w-[500px] rounded-[6px] object-contain" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold">{helicalProduct.title}</h3>
-                  <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-black">
-                    {helicalProduct.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-                  </ul>
-                  <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-black">
-                    <span>Application:</span>
-                    <div className="flex flex-wrap gap-2">
-                      {helicalProduct.applications.map((application) => (
-                        <span key={application} className="inline-flex max-w-full items-center rounded-full border border-action/40 bg-sky/30 px-3 py-1.5 text-xs font-semibold text-action">
-                          {application}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 flex items-center justify-center gap-5 bg-white py-2" aria-label="Helical Gearbox products">
-                <button
-                  type="button"
-                  aria-label="Previous Helical Gearbox product"
-                  onClick={() => setHelicalProductIndex((helicalProductIndex - 1 + helicalGearboxProducts.length) % helicalGearboxProducts.length)}
-                  className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
-                >
-                  <span aria-hidden="true">&#8249;</span>
-                </button>
-                <div className="flex items-center gap-2" role="group" aria-label="Choose Helical Gearbox product">
-                  {helicalGearboxProducts.map((product, index) => (
-                    <button
-                      key={product.title}
-                      type="button"
-                      aria-label={`Show ${product.title}`}
-                      aria-current={index === helicalProductIndex ? "true" : undefined}
-                      onClick={() => setHelicalProductIndex(index)}
-                      className={`size-2.5 rounded-full transition-colors ${index === helicalProductIndex ? "bg-[#0d1b3e]" : "bg-[#ccc] hover:bg-[#aaa]"}`}
-                    />
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  aria-label="Next Helical Gearbox product"
-                  onClick={() => setHelicalProductIndex((helicalProductIndex + 1) % helicalGearboxProducts.length)}
-                  className="grid size-8 place-items-center rounded-full border border-action bg-transparent text-base text-action transition-colors hover:bg-action hover:text-white"
-                >
-                  <span aria-hidden="true">&#8250;</span>
-                </button>
-              </div>
-            </div>
+          {gearboxIndex < 2 ? (
+            <ProductCarousel
+              products={gearboxIndex === 0 ? electricalIsolatorProducts : helicalGearboxProducts}
+              selected={gearboxIndex === 0 ? isolatorProductIndex : helicalProductIndex}
+              onSelect={gearboxIndex === 0 ? setIsolatorProductIndex : setHelicalProductIndex}
+              label={gearbox.label}
+            />
           ) : (
             <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
               <div className="flex h-full items-center justify-center bg-white p-6">

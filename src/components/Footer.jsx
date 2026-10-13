@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto max-w-none px-6 pb-5 pt-8 lg:px-12 lg:pb-6 lg:pt-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1.2fr] lg:gap-x-5">
           <div>
-            <p className="whitespace-nowrap font-display text-base font-bold text-white">
+            <p className="font-display text-base font-bold text-white lg:whitespace-nowrap">
               Aadish Gears &amp; Transmissions Pvt. Ltd.
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed">
@@ -65,13 +65,21 @@ export default function Footer() {
             <div className="overflow-hidden rounded-lg border border-white/10">
               <iframe
                 title="Aadish Gears Shop Location"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d766.5996703284125!2d73.82567328026647!3d18.438025815931777!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2958fcb83f527%3A0x6c04d3d87819ea42!2sAadish%20Gears%20%26%20Transmission%20Pvt%20Ltd%20-%20Transmission%20Products%20Manufacturer!5e0!3m2!1sen!2sus!4v1790146739161!5m2!1sen!2sus"
-                className="h-[180px] w-full border-0"
-                loading="lazy"
+                src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
+                className="h-[220px] w-full border-0 sm:h-[180px]"
+                loading="eager"
                 allowFullScreen=""
                 referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=18.4380258%2C73.8256733"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-block text-xs font-semibold text-white/90 underline underline-offset-2 hover:text-white"
+            >
+              Open in Google Maps
+            </a>
           </div>
         </div>
 

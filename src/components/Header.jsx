@@ -30,9 +30,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-mist">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
-        <a href="#home" className="flex items-center gap-3 shrink-0">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:gap-6 sm:px-6 lg:px-10">
+        <a href="#home" className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <svg className="shrink-0" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
             <path
               d="M17 2 30 9.5v15L17 32 4 24.5v-15L17 2Z"
               stroke="#0F62FE"
@@ -41,7 +41,7 @@ export default function Header() {
             />
             <circle cx="17" cy="17" r="5.5" stroke="#31FF98" strokeWidth="2" fill="none" />
           </svg>
-          <span className="font-display text-sm font-bold tracking-tight text-navy sm:text-base">
+          <span className="min-w-0 font-display text-xs font-bold leading-tight tracking-tight text-navy sm:text-base">
             AADISH GEARS &amp; TRANSMISSIONS PVT LTD
           </span>
         </a>

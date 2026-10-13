@@ -4,6 +4,8 @@ import { INSPECTION_INSTRUMENTS, MACHINERY, TABS } from "../../data/aboutContent
 const styles = `
   .about-tab{background:none;border:none;padding:0 0 .9rem;border-bottom:2px solid transparent;font:inherit;font-size:.8rem;font-weight:700;color:#434e58;cursor:pointer;}
   .about-tab.active{color:#0f62fe;border-color:#0f62fe;}
+  .about-tabs{scrollbar-width:none;}
+  .about-tabs::-webkit-scrollbar{display:none;}
   .about-dots{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-top:1rem;}
   .about-dots button{display:inline-block;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(67,78,88,.2);cursor:pointer;}
   .about-dots button.active{width:1.2rem;height:8px;border-radius:999px;background:#0f62fe;}
@@ -135,12 +137,12 @@ export default function WhyWeSucceedSection() {
       <style>{styles}</style>
 
       <h2 className="mb-8 font-display text-3xl font-bold text-navy sm:text-4xl">Why We Succeed</h2>
-      <div className="grid w-full grid-cols-2 gap-x-4 border-b border-slate/15 pb-2 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="about-tabs flex w-full gap-5 overflow-x-auto border-b border-slate/15 pb-2 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:overflow-visible lg:grid-cols-5">
         {TABS.map((t, i) => (
           <button
             key={t.label}
             type="button"
-            className={"about-tab min-w-0 whitespace-normal text-center" + (i === activeTab ? " active" : "")}
+            className={"about-tab shrink-0 whitespace-nowrap sm:min-w-0 sm:whitespace-normal sm:text-center" + (i === activeTab ? " active" : "")}
             aria-pressed={i === activeTab}
             onClick={() => setActiveTab(i)}
           >
