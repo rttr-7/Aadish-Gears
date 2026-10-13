@@ -198,6 +198,7 @@ export const internationalClients = [
 ];
 
 export const footerLinks = [
+  { label: "Home", href: "#home" },
   { label: "About Us", href: "#about-us" },
   { label: "Our Products", href: "#products" },
   { label: "Gallery", href: "#gallery" },

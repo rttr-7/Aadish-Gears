@@ -5,6 +5,17 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#home");
 
+  const handleNavigation = (event, href) => {
+    window.sessionStorage.setItem("navigation-scroll", "top");
+    if (window.location.hash !== href) return;
+
+    event.preventDefault();
+    window.sessionStorage.removeItem("navigation-scroll");
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  };
+
   useEffect(() => {
     const updateActive = () => {
       const hash = window.location.hash || "#home";
@@ -40,6 +51,7 @@ export default function Header() {
             <a
               key={item.label}
               href={item.href}
+              onClick={(event) => handleNavigation(event, item.href)}
               className={`text-sm font-medium transition-colors ${
                 active === item.href ? "text-action" : "text-slate hover:text-action"
               }`}
@@ -51,6 +63,7 @@ export default function Header() {
 
         <a
           href="#contact"
+          onClick={(event) => handleNavigation(event, "#contact")}
           className="hidden shrink-0 rounded-full bg-action px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-action-hover lg:inline-block"
         >
           Send Us An Enquiry
@@ -73,7 +86,10 @@ export default function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setOpen(false)}
+                onClick={(event) => {
+                  setOpen(false);
+                  handleNavigation(event, item.href);
+                }}
                 className={`text-sm font-medium ${
                   active === item.href ? "text-action" : "text-slate hover:text-action"
                 }`}
@@ -83,7 +99,10 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              onClick={() => setOpen(false)}
+              onClick={(event) => {
+                setOpen(false);
+                handleNavigation(event, "#contact");
+              }}
               className="mt-2 rounded-full bg-action px-5 py-2.5 text-center text-sm font-semibold text-white"
             >
               Send Us An Enquiry

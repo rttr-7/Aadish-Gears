@@ -67,7 +67,7 @@ export default function WhyUsClients() {
           </ul>
 
           <a
-            href="#why-us"
+            href="#about-us"
             className="ml-4 mt-10 inline-block rounded-full border border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white"
           >
             Learn More About Us

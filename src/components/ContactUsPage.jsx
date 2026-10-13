@@ -1,17 +1,16 @@
 import React from 'react';
 
 export default function ContactUsPage() {
-  // Sample array for product gallery - update image paths as needed
   const productImages = [
-    { id: 1, src: "/Aadish-Gears/images/gear1.png", alt: "Gear 1" },
-    { id: 2, src: "/Aadish-Gears/images/gear2.png", alt: "Gear 2" },
-    { id: 3, src: "/Aadish-Gears/images/gear3.png", alt: "Gear 3" },
-    { id: 4, src: "/Aadish-Gears/images/gear4.png", alt: "Gear 4" },
-    { id: 5, src: "/Aadish-Gears/images/gear5.png", alt: "Gear 5" },
-    { id: 6, src: "/Aadish-Gears/images/gear6.png", alt: "Gear 6" },
-    { id: 7, src: "/Aadish-Gears/images/gear7.png", alt: "Gear 7" },
-    { id: 8, src: "/Aadish-Gears/images/gear8.png", alt: "Gear 8" },
-    { id: 9, src: "/Aadish-Gears/images/gear9.png", alt: "Gear 9" },
+    { id: 1, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.png", alt: "AGTPL 765 KVA ES Gearbox" },
+    { id: 2, src: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.png", alt: "EV Gearbox" },
+    { id: 3, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.png", alt: "AGTPL 765 KVA MS Gearbox" },
+    { id: 4, src: "/Aadish-Gears/images/Gallery/Gears.JPG", alt: "Precision Gears" },
+    { id: 5, src: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.png", alt: "Helical Gears" },
+    { id: 6, src: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.png", alt: "ISO 0.5 H.P Gearbox" },
+    { id: 7, src: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.png", alt: "Inline Helical Gearbox" },
+    { id: 8, src: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.png", alt: "ISO 1.0 H.P Gearbox" },
+    { id: 9, src: "/Aadish-Gears/images/Gallery/NIKTISH%20ASM%20GEARBOX.png", alt: "Niktish Assembly Gearbox" },
   ];
 
   return (
@@ -60,25 +59,25 @@ export default function ContactUsPage() {
 
       {}
       {/* Main Form & Contact Details Section */}
-      <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+      <section className="mx-auto max-w-5xl px-6 py-10 lg:px-10">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-12 md:items-start">
           
           {/* Left Column: Compact Form & Product Grid */}
           <div>
             <h2 className="mb-1 font-display text-2xl font-bold text-navy sm:text-3xl">
               Send us your requirement
             </h2>
-            <p className="mb-4 text-xs text-slate-500">
+            <p className="mb-5 text-xs text-slate-500">
               <span className="font-semibold text-navy">*</span> indicates a required field
             </p>
 
             {/* Compact Form */}
-            <form className="grid gap-3 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="grid gap-x-3 gap-y-3 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
               <label className="block text-xs font-semibold text-navy">
                 <span className="mb-1 block">Full Name *</span>
                 <input
                   type="text"
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
 
@@ -86,7 +85,7 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Company Name</span>
                 <input
                   type="text"
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
 
@@ -94,7 +93,7 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Email Address *</span>
                 <input
                   type="email"
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
 
@@ -102,13 +101,13 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Phone Number *</span>
                 <input
                   type="tel"
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
 
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
                 <span className="mb-1 block">Country *</span>
-                <select className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <select className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
                   <option>India</option>
                 </select>
               </label>
@@ -116,8 +115,8 @@ export default function ContactUsPage() {
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
                 <span className="mb-1 block">Your Requirement *</span>
                 <textarea
-                  rows={2}
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  rows={3}
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   placeholder="Tell us what you need — product type, specs or drawing reference, and quantity."
                 />
               </label>
@@ -125,7 +124,7 @@ export default function ContactUsPage() {
               <div className="mt-1 sm:col-span-2">
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-5 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                  className="rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
                 >
                   Send Enquiry
                 </button>
@@ -133,13 +132,13 @@ export default function ContactUsPage() {
             </form>
 
             {/* Product Image Grid (3x3 matching target design) */}
-            <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="mx-auto mt-8 grid w-full max-w-[380px] grid-cols-3 gap-2">
               {productImages.map((product) => (
-                <div key={product.id} className="flex items-center justify-center rounded-lg bg-slate-50 p-2 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div key={product.id} className="flex aspect-[1.1] items-center justify-center bg-white p-1">
                   <img
                     src={product.src}
                     alt={product.alt}
-                    className="max-h-28 w-full object-contain"
+                    className="h-full w-full object-contain"
                   />
                 </div>
               ))}
@@ -147,7 +146,7 @@ export default function ContactUsPage() {
           </div>
 
           {/* Right Column: Contact Details Sidebar */}
-          <aside className="space-y-5 pt-1">
+          <aside className="space-y-6 pt-1 md:pt-14 md:pl-4">
             {/* Call Us */}
             <div className="flex items-start gap-3">
               <span className="material-symbols-rounded text-xl text-navy mt-0.5">call</span>

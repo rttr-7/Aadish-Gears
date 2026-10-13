@@ -111,7 +111,9 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
 
 export default function WhyWeSucceedSection() {
   const [activeTab, setActiveTab] = useState(0);
-  const [activeInventory, setActiveInventory] = useState(null);
+  const [activeInventory, setActiveInventory] = useState(() =>
+    typeof window !== "undefined" && ["#machinery-list", "#machinery-list-from-products"].includes(window.location.hash) ? "machinery" : null
+  );
   const tab = TABS[activeTab];
   const tabImage = TAB_IMAGES[activeTab];
   const machineryColumns = [
@@ -129,7 +131,7 @@ export default function WhyWeSucceedSection() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section id="why-we-succeed" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 lg:px-10">
       <style>{styles}</style>
 
       <h2 className="mb-8 font-display text-3xl font-bold text-navy sm:text-4xl">Why We Succeed</h2>
@@ -201,7 +203,10 @@ export default function WhyWeSucceedSection() {
       </div>
       {activeInventory === "machinery" && (
         <InventoryDialog
-          onClose={() => setActiveInventory(null)}
+          onClose={() => {
+            setActiveInventory(null);
+            if (window.location.hash === "#machinery-list-from-products") window.history.back();
+          }}
           category="Manufacturing Excellence"
           title="Machinery List"
           items={MACHINERY}
