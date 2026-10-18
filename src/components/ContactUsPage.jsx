@@ -1,6 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ContactUsPage() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    country: 'India',
+    requirement: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL,
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        }
+      );
+
+      // With no-cors mode, we can't read the response, so assume success
+      setSubmitStatus({ type: 'success', message: 'Thank you! Your enquiry has been sent successfully. We will get back to you soon.' });
+      setFormData({
+        fullName: '',
+        companyName: '',
+        email: '',
+        phone: '',
+        country: 'India',
+        requirement: '',
+      });
+    } catch (error) {
+      setSubmitStatus({ type: 'error', message: 'Error submitting form. Please try again.' });
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const productImages = [
     { id: 1, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.png", alt: "AGTPL 765 KVA ES Gearbox" },
     { id: 2, src: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.png", alt: "EV Gearbox" },
@@ -72,11 +127,15 @@ export default function ContactUsPage() {
             </p>
 
             {/* Compact Form */}
-            <form className="grid gap-x-3 gap-y-3 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="grid gap-x-3 gap-y-3 sm:grid-cols-2" onSubmit={handleSubmit}>
               <label className="block text-xs font-semibold text-navy">
                 <span className="mb-1 block">Full Name *</span>
                 <input
                   type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
@@ -85,6 +144,9 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Company Name</span>
                 <input
                   type="text"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
@@ -93,6 +155,10 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Email Address *</span>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
@@ -101,13 +167,22 @@ export default function ContactUsPage() {
                 <span className="mb-1 block">Phone Number *</span>
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </label>
 
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
                 <span className="mb-1 block">Country *</span>
-                <select className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                >
                   <option>India</option>
                 </select>
               </label>
@@ -115,18 +190,33 @@ export default function ContactUsPage() {
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
                 <span className="mb-1 block">Your Requirement *</span>
                 <textarea
+                  name="requirement"
+                  value={formData.requirement}
+                  onChange={handleInputChange}
+                  required
                   rows={3}
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   placeholder="Tell us what you need — product type, specs or drawing reference, and quantity."
                 />
               </label>
 
+              {submitStatus && (
+                <div className={`mt-3 rounded-md p-3 text-xs font-semibold sm:col-span-2 ${
+                  submitStatus.type === 'success'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
+                }`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <div className="mt-1 sm:col-span-2">
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+                  disabled={isSubmitting}
+                  className="rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Enquiry
+                  {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </button>
               </div>
             </form>
