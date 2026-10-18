@@ -11,7 +11,7 @@ export default function Hero() {
         backgroundSize: "auto, 44px 44px, 44px 44px",
       }}
     >
-            <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:px-10 lg:pt-24">
+            <div className="mx-auto max-w-7xl px-6 pb-20 pt-12 lg:px-10 lg:pt-20">
         <div>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-mint">
             Precision transmission products manufacturing

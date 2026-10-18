@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   electricalIsolatorProducts,
   gearboxes,
@@ -6,12 +6,13 @@ import {
   helicalGearboxProducts,
   promises,
 } from "../data/productsPage";
+import { INSPECTION_INSTRUMENTS } from "../data/aboutContent";
 
 function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
-  const desktopColumns = items.length === 4 ? "lg:grid-cols-4 xl:grid-cols-4" : "lg:grid-cols-3 xl:grid-cols-5";
+  const desktopColumns = items.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5";
 
   return (
-    <div className={`mt-5 flex min-w-0 gap-5 overflow-x-auto border-b border-slate/20 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:overflow-visible ${desktopColumns}`} role="tablist" aria-label={label}>
+    <div className={`mt-5 flex min-w-0 gap-5 overflow-x-auto border-b border-slate/20 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 sm:overflow-visible ${desktopColumns}`} role="tablist" aria-label={label}>
       {items.map((item, index) => (
         <button
           key={item.label}
@@ -26,7 +27,7 @@ function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
               });
             }
           }}
-          className={`shrink-0 whitespace-nowrap border-b-2 px-3 py-3 text-sm font-bold transition-colors sm:shrink sm:whitespace-normal xl:whitespace-nowrap ${
+          className={`shrink-0 whitespace-nowrap border-b-2 px-2 py-3 text-xs font-bold transition-colors sm:shrink sm:whitespace-normal sm:px-3 sm:text-sm xl:whitespace-nowrap ${
             index === selected ? "border-action text-action" : "border-transparent text-slate hover:text-action"
           }`}
         >
@@ -40,7 +41,7 @@ function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
 function ProductFeature({ title, image, alt, description, details, imageMaxWidth = "max-w-[500px]" }) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-9 lg:px-10">
-      <div className="mx-auto w-full lg:w-[90%]">
+      <div>
         <h2 className="font-display text-2xl font-bold text-navy">{title}</h2>
         <div className="mt-5 grid gap-8 md:grid-cols-2 md:items-stretch">
           <div className="flex justify-center md:h-full">
@@ -56,6 +57,82 @@ function ProductFeature({ title, image, alt, description, details, imageMaxWidth
         </div>
       </div>
     </section>
+  );
+}
+
+function InventoryDialog({ onClose, category, title, items, columns, entryLabel, maxWidth, minTableWidth }) {
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    dialogRef.current?.showModal();
+  }, []);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      aria-labelledby="inventory-title"
+      className={`m-auto max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] ${maxWidth} overflow-hidden rounded-3xl border-0 bg-white p-0 text-navy shadow-2xl`}
+      style={{ backdropFilter: "blur(5px)", backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialogRef.current?.close();
+      }}
+    >
+      <div className="flex max-h-[calc(100dvh-2rem)] flex-col">
+        <div className="flex items-start justify-between gap-4 px-6 pb-5 pt-6 sm:px-8 sm:pt-8">
+          <div>
+            <p className="font-mono text-xs font-semibold uppercase tracking-wide text-action">{category}</p>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <h2 id="inventory-title" className="font-display text-2xl font-bold sm:text-3xl">{title}</h2>
+              <span className="rounded-lg bg-[#edf4ff] px-3 py-1 text-sm font-semibold text-action">{items.length} entries</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-label={`Close ${title}`}
+            className="grid size-11 shrink-0 place-items-center rounded-lg bg-[#f3f6fa] text-3xl leading-none text-navy transition-colors hover:bg-[#e5edf7]"
+            onClick={() => dialogRef.current?.close()}
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-auto px-6 pb-6 sm:px-8">
+          <table className={`w-full ${minTableWidth} table-fixed border-collapse text-left text-sm`}>
+            <colgroup>
+              {columns.map((column) => <col key={column.heading} className={column.width} />)}
+            </colgroup>
+            <thead className="sticky top-0 z-10 bg-[#edf4fc] text-xs uppercase text-navy">
+              <tr>
+                {columns.map((column) => (
+                  <th key={column.heading} className="border border-[#d3e1f0] px-3 py-3 font-bold">{column.heading}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item, index) => (
+                <tr key={index} className="odd:bg-white even:bg-[#f5f8fc]">
+                  {columns.map((column) => (
+                    <td key={column.heading} className="border border-[#d3e1f0] px-3 py-2.5">{column.value(item, index)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 border-t border-[#d3e1f0] px-6 py-4 sm:px-8">
+          <p className="text-sm text-slate">Showing all {items.length} {entryLabel} entries</p>
+          <button
+            type="button"
+            className="rounded-lg bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
+            onClick={() => dialogRef.current?.close()}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </dialog>
   );
 }
 
@@ -125,8 +202,15 @@ export default function ProductsPage() {
   const [isolatorProductIndex, setIsolatorProductIndex] = useState(0);
   const [helicalProductIndex, setHelicalProductIndex] = useState(0);
   const [gearIndex, setGearIndex] = useState(0);
+  const [showInspectionDialog, setShowInspectionDialog] = useState(false);
   const gearbox = gearboxes[gearboxIndex];
   const gear = gearTypes[gearIndex];
+  const inspectionColumns = [
+    { heading: "Sr No", width: "w-14", value: (_, index) => String(index + 1).padStart(2, "0") },
+    { heading: "Type Of Instrument", width: "w-[54%]", value: (instrument) => instrument.type },
+    { heading: "No", width: "w-[16%]", value: (instrument) => instrument.quantity },
+    { heading: "Make", value: (instrument) => instrument.make },
+  ];
 
   return (
     <main id="products" className="bg-white text-navy">
@@ -138,7 +222,7 @@ export default function ProductsPage() {
             backgroundSize: "32px 32px",
           }}
         >
-          <div className="mx-auto w-full lg:w-[90%]">
+          <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Our Expertise</p>
             <h1 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl">Powering Performance Through Precision</h1>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-sky/90 sm:text-base">
@@ -149,7 +233,7 @@ export default function ProductsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14" aria-labelledby="gearbox-title">
-        <div className="mx-auto w-full lg:w-[90%]">
+        <div>
           <h2 id="gearbox-title" className="font-display text-2xl font-bold">Customized Gears Boxes</h2>
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearboxes} selected={gearboxIndex} onSelect={setGearboxIndex} label="Gearbox types" scrollTargetId="gearbox-panel" />
@@ -192,14 +276,14 @@ export default function ProductsPage() {
 
       <section className="bg-[#f3f8fe]">
         <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-          <div className="mx-auto w-full lg:w-[90%]">
+          <div>
             <h2 className="font-display text-2xl font-bold">Our Promise</h2>
             <p className="mt-2 text-sm text-slate">Finishing processes we don’t run in-house are handled by a small set of trusted, ISO-certified vendors.</p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {promises.map(([icon, label]) => (
                 <div key={label} className="flex min-h-16 items-center justify-start gap-3 rounded-xl bg-[#d6e7f9] px-4 py-3 text-sm font-semibold text-navy">
                   <span className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-white text-action" aria-hidden="true">
-                    <span className="material-symbols-rounded translate-x-0.5 translate-y-1 text-[20px] leading-none">{icon}</span>
+                    <span className="material-symbols-rounded text-[20px] leading-none">{icon}</span>
                   </span>
                   <span className="min-w-0 text-left">{label}</span>
                 </div>
@@ -210,7 +294,7 @@ export default function ProductsPage() {
               <p className="mt-2 text-sm text-slate">Our advanced machinery and precision instruments enable us to deliver consistent quality, accuracy and reliability across every product.</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="#machinery-list-from-products" className="rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Machine List</a>
-                <a href="#about-us" className="rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Instrument List</a>
+                <button type="button" onClick={() => setShowInspectionDialog(true)} className="rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Instrument List</button>
               </div>
             </div>
           </div>
@@ -218,7 +302,7 @@ export default function ProductsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14" aria-labelledby="gears-title">
-        <div className="mx-auto w-full lg:w-[90%]">
+        <div>
           <h2 id="gears-title" className="font-display text-2xl font-bold">Gears</h2>
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearTypes} selected={gearIndex} onSelect={setGearIndex} label="Gear types" scrollTargetId="gears-panel" />
@@ -307,7 +391,7 @@ export default function ProductsPage() {
             backgroundSize: "32px 32px",
           }}
         >
-          <div className="mx-auto flex w-full flex-col gap-5 sm:flex-row sm:items-center sm:justify-between lg:w-[90%]">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">Get in touch with us</p>
               <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">Have a drawing or a rough sketch?</h2>
@@ -317,6 +401,18 @@ export default function ProductsPage() {
           </div>
         </div>
       </section>
+      {showInspectionDialog && (
+        <InventoryDialog
+          onClose={() => setShowInspectionDialog(false)}
+          category="Quality Inspection"
+          title="Inspection Instruments List"
+          items={INSPECTION_INSTRUMENTS}
+          columns={inspectionColumns}
+          entryLabel="inspection instrument"
+          maxWidth="max-w-[900px]"
+          minTableWidth="min-w-[700px]"
+        />
+      )}
     </main>
   );
 }

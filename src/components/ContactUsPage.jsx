@@ -40,7 +40,7 @@ export default function ContactUsPage() {
             />
 
             {/* Content Container */}
-            <div className="relative mx-auto max-w-7xl px-6 py-4 lg:px-10 lg:py-5">
+            <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-12">
               <div className="w-full max-w-3xl text-left">
                 <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-mint">
                   Get in touch with us

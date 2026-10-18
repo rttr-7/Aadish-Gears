@@ -58,7 +58,7 @@ export default function TeamSection() {
               <path d="M278 77V112M162 112H368" />
               <path d="M162 112V151" markerEnd="url(#team-chart-arrow)" />
               <path d="M368 112V151" markerEnd="url(#team-chart-arrow)" />
-              <path d="M327 49H598V339" markerEnd="url(#team-chart-arrow)" />
+              <path d="M327 49H608.5V339" markerEnd="url(#team-chart-arrow)" />
               <path d="M834 77V96M834 96H1118" />
               <path d="M834 96V115" markerEnd="url(#team-chart-arrow)" />
               <path d="M1118 96V115" markerEnd="url(#team-chart-arrow)" />
@@ -71,7 +71,7 @@ export default function TeamSection() {
                 return (
                   <g key={department.title}>
                     {productionReport && <path d={`M${index === 0 ? 81 : index === 1 ? 208 : index === 2 ? 335 : 440} 279V339`} markerEnd="url(#team-chart-arrow)" />}
-                    {secondaryReport && <path d={`M${center} 279V339`} markerEnd="url(#team-chart-arrow)" />}
+                    {secondaryReport && index !== 4 && <path d={`M${center} 279V339`} markerEnd="url(#team-chart-arrow)" />}
                   </g>
                 );
               })}

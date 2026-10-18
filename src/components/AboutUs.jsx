@@ -14,7 +14,7 @@ export default function AboutUs() {
           <h1 className="w-full max-w-7xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[60px]">
             Built on precision, run like a family for over two decades
           </h1>
-          <p className="mt-6 max-w-xl text-base text-sky/90">
+          <p className="mt-6 w-full text-base text-sky/90">
             What began as a small proprietorship in 2002 is today a full-fledged precision transmission manufacturer, still guided by the same hands-on, one-stop approach it started with.
           </p>
         </div>

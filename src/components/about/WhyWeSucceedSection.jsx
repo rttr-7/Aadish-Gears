@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { INSPECTION_INSTRUMENTS, MACHINERY, TABS } from "../../data/aboutContent";
 
 const styles = `
-  .about-tab{background:none;border:none;padding:0 0 .9rem;border-bottom:2px solid transparent;font:inherit;font-size:.8rem;font-weight:700;color:#434e58;cursor:pointer;}
-  .about-tab.active{color:#0f62fe;border-color:#0f62fe;}
+  .about-tab{background:none;border:none;padding:0;border-bottom:1px solid #d0d5dd;font:inherit;font-size:.6rem;font-weight:700;color:#434e58;cursor:pointer;white-space:nowrap;min-width:0;padding-bottom:.9rem;}@media (min-width:640px){.about-tab{font-size:.75rem;white-space:normal;flex:1;}}@media (min-width:1024px){.about-tab{font-size:.8rem;}}
+  .about-tab.active{color:#0f62fe;border-bottom-width:2px;border-color:#0f62fe;}
   .about-tabs{scrollbar-width:none;}
   .about-tabs::-webkit-scrollbar{display:none;}
   .about-dots{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-top:1rem;}
@@ -15,15 +15,15 @@ const styles = `
 
 const TAB_IMAGES = [
   {
-    src: "/Aadish-Gears/images/ManufacturingExcellance.png",
+    src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.png",
     alt: "Manufacturing equipment for precision gear production",
   },
   {
-    src: "/Aadish-Gears/images/Assembly%20infra.png",
+    src: "/Aadish-Gears/images/Assembly%20Machinery/2.%20SEMI%20AUTOMATIC%20GEARBOX%20ASSEMBLY%20LINE.png",
     alt: "Semi-automatic gearbox assembly line",
   },
   {
-    src: "/Aadish-Gears/images/Quality%20Inspec.png",
+    src: "/Aadish-Gears/images/Inspection%20Machinery/2)%20PCD%20RUNOUT%20CHECKING%20MACHINE.png",
     alt: "PCD runout checking machine used for quality inspection",
   },
   {
@@ -34,6 +34,14 @@ const TAB_IMAGES = [
     src: "/Aadish-Gears/images/Future.png",
     alt: "A young plant growing, representing future growth",
   },
+];
+
+const GALLERY2_IMAGES = [
+  { src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.png", alt: "4 Axis VMC Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/3)%20VMC%20DRILL%20TAP%20CENTRE.png", alt: "VMC Drill Tap Centre" },
+  { src: "/Aadish-Gears/images/Gallery2/9)%20POLYGON%20LATHE%20MACHINE.png", alt: "Polygon Lathe Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/12)%20AUTOMATIC%20BANDSAW%20MACHINE.png", alt: "Automatic Bandsaw Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/11)%20TAPPING%20MACHINE.png", alt: "Tapping Machine" },
 ];
 
 function InventoryDialog({ onClose, category, title, items, columns, entryLabel, maxWidth, minTableWidth }) {
@@ -113,11 +121,22 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
 
 export default function WhyWeSucceedSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const [carouselImageIndex, setCarouselImageIndex] = useState(0);
   const [activeInventory, setActiveInventory] = useState(() =>
     typeof window !== "undefined" && ["#machinery-list", "#machinery-list-from-products"].includes(window.location.hash) ? "machinery" : null
   );
+
+  useEffect(() => {
+    if (activeTab === 0) {
+      const interval = setInterval(() => {
+        setCarouselImageIndex((prev) => (prev + 1) % GALLERY2_IMAGES.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [activeTab]);
+
   const tab = TABS[activeTab];
-  const tabImage = TAB_IMAGES[activeTab];
+  const tabImage = activeTab === 0 ? GALLERY2_IMAGES[carouselImageIndex] : TAB_IMAGES[activeTab];
   const machineryColumns = [
     { heading: "No", width: "w-16", value: (_, index) => index + 1 },
     { heading: "Name of machine", width: "w-[24%]", value: (machine) => machine.name },
@@ -133,16 +152,16 @@ export default function WhyWeSucceedSection() {
   ];
 
   return (
-    <section id="why-we-succeed" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 lg:px-10">
+    <section id="why-we-succeed" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-12 lg:px-10">
       <style>{styles}</style>
 
-      <h2 className="mb-8 font-display text-3xl font-bold text-navy sm:text-4xl">Why We Succeed</h2>
-      <div className="about-tabs flex w-full gap-5 overflow-x-auto border-b border-slate/15 pb-2 sm:grid sm:grid-cols-3 sm:gap-x-4 sm:overflow-visible lg:grid-cols-5">
+      <h2 className="mb-8 font-display text-3xl font-bold text-navy sm:mb-12 lg:mb-24 sm:text-4xl">Why We Succeed</h2>
+      <div className="about-tabs flex w-full gap-3 overflow-x-auto border-b border-slate/15 pb-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible lg:grid-cols-5 lg:gap-5">
         {TABS.map((t, i) => (
           <button
             key={t.label}
             type="button"
-            className={"about-tab shrink-0 whitespace-nowrap sm:min-w-0 sm:whitespace-normal sm:text-center" + (i === activeTab ? " active" : "")}
+            className={"about-tab shrink-0 sm:shrink sm:text-center" + (i === activeTab ? " active" : "")}
             aria-pressed={i === activeTab}
             onClick={() => setActiveTab(i)}
           >
@@ -151,34 +170,49 @@ export default function WhyWeSucceedSection() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">
+      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 lg:mt-10 lg:gap-8 lg:grid-cols-2 lg:items-start">
         <div>
           <div className="overflow-hidden border border-slate/25 bg-white">
             <img src={tabImage.src} alt={tabImage.alt} className="block h-auto w-full" />
           </div>
-          <div className="about-dots" role="group" aria-label="Choose a Why We Succeed section">
-            {TABS.map((item, index) => (
-              <button
-                key={item.label}
-                type="button"
-                className={index === activeTab ? "active" : ""}
-                aria-label={`Show ${item.label}`}
-                aria-current={index === activeTab ? "page" : undefined}
-                onClick={() => setActiveTab(index)}
-              />
-            ))}
-          </div>
+          {activeTab === 0 ? (
+            <div className="about-dots" role="group" aria-label="Navigate Gallery2 images">
+              {GALLERY2_IMAGES.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={index === carouselImageIndex ? "active" : ""}
+                  aria-label={`Show image ${index + 1}`}
+                  aria-current={index === carouselImageIndex ? "page" : undefined}
+                  onClick={() => setCarouselImageIndex(index)}
+                />
+              ))}
+            </div>
+          ) : activeTab < 3 ? (
+            <div className="about-dots" role="group" aria-label="Choose a Why We Succeed section">
+              {TABS.map((item, index) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  className={index === activeTab ? "active" : ""}
+                  aria-label={`Show ${item.label}`}
+                  aria-current={index === activeTab ? "page" : undefined}
+                  onClick={() => setActiveTab(index)}
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <div>
           <h3 className="font-display text-2xl font-bold text-navy">{tab.heading}</h3>
           {tab.bullets?.length > 0 && (
-            <ul className="mt-6 space-y-2 pl-5 text-sm text-navy">
+            <ul className="mt-3 space-y-2 pl-5 text-sm text-navy sm:mt-6">
               {tab.bullets.map((b) => <li key={b} className="list-disc">{b}</li>)}
             </ul>
           )}
           {tab.bulletGroups?.map((group) => (
-            <div key={group.heading} className="mt-6">
+            <div key={group.heading} className="mt-3 sm:mt-6">
               <h4 className="font-semibold text-navy">{group.heading}</h4>
               <ul className="mt-2 space-y-2 pl-5 text-sm text-navy">
                 {group.items.map((item) => <li key={item} className="list-disc">{item}</li>)}
@@ -186,7 +220,7 @@ export default function WhyWeSucceedSection() {
             </div>
           ))}
           {tab.paragraphs?.map((p, i) => (
-            <p key={i} className="mt-4 text-sm leading-relaxed text-slate">{p}</p>
+            <p key={i} className="mt-3 text-sm leading-relaxed text-slate sm:mt-4">{p}</p>
           ))}
           {tab.cta && (activeTab === 0 || activeTab === 2 ? (
             <button

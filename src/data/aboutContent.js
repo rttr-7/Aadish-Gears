@@ -138,7 +138,7 @@ export const TABS = [
     paragraphs: [
       "Quality is built into every stage of our process, from manufacturing and inspection to final delivery.",
     ],
-    cta: "View Quality Process",
+    cta: "View Our Instrument List",
   },
   {
     label: "Infrastructure & People",
