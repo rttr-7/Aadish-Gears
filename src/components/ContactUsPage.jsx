@@ -26,8 +26,13 @@ export default function ContactUsPage() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch(
-        import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL,
+      const scriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL;
+      if (!scriptUrl) {
+        throw new Error('VITE_GOOGLE_APPS_SCRIPT_URL is not set at build time');
+      }
+
+      await fetch(
+        scriptUrl,
         {
           method: 'POST',
           mode: 'no-cors',

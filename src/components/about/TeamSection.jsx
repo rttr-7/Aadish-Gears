@@ -46,7 +46,7 @@ export default function TeamSection() {
           >
             <title id="team-chart-title">Aadish Gears team structure</title>
             <desc id="team-chart-description">
-              Director Atul Tanksale leads Production In-charge Dinesh Pandharkar, Design and Development by Snehal Bongale, and Accounts and HR. Production oversees the Machine Shop, Gear Shop, Assembly Shop, and Quality. Director Rupali Chivate leads Administration and Management Representative and Stores and Consumables. The chart also includes Logistics, Purchase, and Sales and Marketing.
+              Director Atul Tanksale leads Production In-charge Dinesh Pandharkar, Design and Development by Snehal Bongale, and Accounts and HR. Production oversees the Machine Shop, Gear Shop, Assembly Shop, and Quality. Director R S C leads Administration and Management Representative and Stores and Consumables. The chart also includes Logistics, Purchase, and Sales and Marketing.
             </desc>
             <defs>
               <marker id="team-chart-arrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
@@ -84,7 +84,7 @@ export default function TeamSection() {
 
               <rect x="782" y="26" width="105" height="51" rx="9" fill="#efeefe" stroke="#4036b2" />
               <text x="834" y="49" textAnchor="middle" fill="#343080" fontSize="13" fontWeight="700">Director</text>
-              <text x="834" y="64" textAnchor="middle" fill="#343080" fontSize="11">Rupali Chivate</text>
+              <text x="834" y="64" textAnchor="middle" fill="#343080" fontSize="11">R S C</text>
 
               <rect x="81" y="151" width="165" height="53" rx="8" fill="#e4f6f1" stroke="#08745b" />
               <text x="163" y="174" textAnchor="middle" fill="#075747" fontSize="13" fontWeight="700">Production In-charge</text>
