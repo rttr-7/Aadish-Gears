@@ -42,10 +42,10 @@ function ProductFeature({ title, image, alt, description, details, imageMaxWidth
   return (
     <section className="mx-auto max-w-7xl px-6 py-9 lg:px-10">
       <div>
-        <h2 className="font-display text-2xl font-bold text-navy">{title}</h2>
+        <h2 id={`feature-${title.toLowerCase()}`} className="scroll-mt-24 font-display text-2xl font-bold text-navy">{title}</h2>
         <div className="mt-5 grid gap-8 md:grid-cols-2 md:items-stretch">
           <div className="flex justify-center md:h-full">
-            <img src={image} alt={alt} className={`block h-auto w-full ${imageMaxWidth} object-contain md:h-full`} />
+            <img loading="lazy" decoding="async" src={image} alt={alt} className={`block h-auto w-full ${imageMaxWidth} object-contain md:h-full`} />
           </div>
           <div>
             <h3 className="font-display text-lg font-bold text-navy">{title}</h3>
@@ -144,7 +144,7 @@ function ProductCarousel({ products, selected, onSelect, label }) {
     <div>
       <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
         <div className="flex h-full items-center justify-center bg-white p-6">
-          <img src={product.image} alt={product.title} className="aspect-[16/9] w-full max-w-[500px] rounded-[6px] object-contain" />
+          <img loading="lazy" decoding="async" src={product.image} alt={product.title} className="aspect-[16/9] w-full max-w-[500px] rounded-[6px] object-contain" />
         </div>
         <div>
           <h3 className="font-display text-lg font-bold">{product.title}</h3>
@@ -203,6 +203,40 @@ export default function ProductsPage() {
   const [helicalProductIndex, setHelicalProductIndex] = useState(0);
   const [gearIndex, setGearIndex] = useState(0);
   const [showInspectionDialog, setShowInspectionDialog] = useState(false);
+  useEffect(() => {
+    const applyTarget = () => {
+      let target;
+      try {
+        target = JSON.parse(window.sessionStorage.getItem("products-target"));
+        window.sessionStorage.removeItem("products-target");
+      } catch {
+        return;
+      }
+      if (!target) return;
+
+      if (target.group === "feature") {
+        // handled by scroll below
+      } else if (target.group === "gear") {
+        setGearIndex(target.index);
+      } else {
+        setGearboxIndex(target.index);
+        if (target.product !== undefined) {
+          (target.index === 0 ? setIsolatorProductIndex : setHelicalProductIndex)(target.product);
+        }
+      }
+      setTimeout(() => {
+        document
+          .getElementById(
+            target.group === "feature" ? `feature-${target.id}` : target.group === "gear" ? "gears-title" : "gearbox-title",
+          )
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 400);
+    };
+
+    applyTarget();
+    window.addEventListener("products-target", applyTarget);
+    return () => window.removeEventListener("products-target", applyTarget);
+  }, []);
   const gearbox = gearboxes[gearboxIndex];
   const gear = gearTypes[gearIndex];
   const inspectionColumns = [
@@ -247,7 +281,7 @@ export default function ProductsPage() {
           ) : (
             <div id="gearbox-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
               <div className="flex h-full items-center justify-center bg-white p-6">
-                <img
+                <img loading="lazy" decoding="async"
                   src={gearbox.image}
                   alt={gearbox.title}
                   className={`w-full ${gearboxIndex === 2 ? "max-w-[450px]" : "max-w-[500px]"} rounded-[6px] bg-white object-contain ${gearboxIndex === 3 ? "aspect-square" : "aspect-[16/9]"}`}
@@ -307,7 +341,7 @@ export default function ProductsPage() {
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearTypes} selected={gearIndex} onSelect={setGearIndex} label="Gear types" scrollTargetId="gears-panel" />
           <div id="gears-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
-            <img src={gear.image} alt={gear.title} className="mx-auto block aspect-square h-full w-full max-w-[400px] object-contain object-top md:aspect-auto" />
+            <img loading="lazy" decoding="async" src={gear.image} alt={gear.title} className="mx-auto block aspect-square h-full w-full max-w-[400px] object-contain object-top md:aspect-auto" />
             <div>
               <h3 className="font-display text-lg font-bold">{gear.title}</h3>
               {gear.description?.length > 1 && (

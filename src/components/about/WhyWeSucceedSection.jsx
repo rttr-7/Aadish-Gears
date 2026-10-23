@@ -173,7 +173,7 @@ export default function WhyWeSucceedSection() {
       <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 lg:mt-10 lg:gap-8 lg:grid-cols-2 lg:items-start">
         <div>
           <div className="overflow-hidden border border-slate/25 bg-white">
-            <img src={tabImage.src} alt={tabImage.alt} className="block h-auto w-full" />
+            <img loading="lazy" decoding="async" src={tabImage.src} alt={tabImage.alt} className="block h-auto w-full" />
           </div>
           {activeTab === 0 ? (
             <div className="about-dots" role="group" aria-label="Navigate Gallery2 images">

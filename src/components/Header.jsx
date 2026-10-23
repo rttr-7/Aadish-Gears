@@ -1,5 +1,38 @@
 import { useEffect, useState } from "react";
 import { nav } from "../data/content";
+import {
+  electricalIsolatorProducts,
+  gearboxes,
+  gearTypes,
+  helicalGearboxProducts,
+} from "../data/productsPage";
+
+const productMenu = [
+  {
+    heading: "Customized Gear Boxes",
+    group: "gearbox",
+    items: gearboxes.map((gearbox, index) => ({
+      label: gearbox.label,
+      index,
+      products: index === 0 ? electricalIsolatorProducts : index === 1 ? helicalGearboxProducts : [],
+    })),
+  },
+  {
+    heading: "Gears",
+    group: "gear",
+    items: gearTypes.map((gear, index) => ({ label: gear.label, index, products: [] })),
+  },
+  {
+    heading: "Shafts & Sprockets",
+    group: "feature",
+    items: ["Worm Shafts", "Sprockets", "Splines"].map((label, index) => ({
+      label,
+      index,
+      id: label.toLowerCase(),
+      products: [],
+    })),
+  },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -14,6 +47,23 @@ export default function Header() {
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+  };
+
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [hoveredHeading, setHoveredHeading] = useState(null);
+  const [hoveredSub, setHoveredSub] = useState(null);
+
+  const goToProduct = (event, target) => {
+    event.preventDefault();
+    setProductsOpen(false);
+    setHoveredSub(null);
+    window.sessionStorage.setItem("products-target", JSON.stringify(target));
+    if (window.location.hash !== "#products") {
+      window.sessionStorage.setItem("navigation-scroll", "top");
+      window.location.hash = "#products";
+    } else {
+      window.dispatchEvent(new Event("products-target"));
+    }
   };
 
   useEffect(() => {
@@ -32,33 +82,109 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-mist">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:gap-6 sm:px-6 lg:px-10">
         <a href="#home" className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <svg className="shrink-0" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
-            <path
-              d="M17 2 30 9.5v15L17 32 4 24.5v-15L17 2Z"
-              stroke="#0F62FE"
-              strokeWidth="2"
-              fill="none"
-            />
-            <circle cx="17" cy="17" r="5.5" stroke="#31FF98" strokeWidth="2" fill="none" />
-          </svg>
+          <img src="/Aadish-Gears/AadishGearsLogo.png" alt="" width="40" height="40" className="shrink-0" />
           <span className="min-w-0 font-display text-xs font-bold leading-tight tracking-tight text-navy sm:text-base">
             AADISH GEARS &amp; TRANSMISSIONS PVT LTD
           </span>
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {nav.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(event) => handleNavigation(event, item.href)}
-              className={`text-sm font-medium transition-colors ${
-                active === item.href ? "text-action" : "text-slate hover:text-action"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
+          {nav.map((item) => {
+            const link = (
+              <a
+                href={item.href}
+                onClick={(event) => handleNavigation(event, item.href)}
+                className={`text-sm font-medium transition-colors ${
+                  active === item.href ? "text-action" : "text-slate hover:text-action"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+            if (item.href !== "#products") return <span key={item.label}>{link}</span>;
+
+            return (
+              <div
+                key={item.label}
+                className="relative py-2"
+                onMouseEnter={() => setProductsOpen(true)}
+                onMouseLeave={() => {
+                  setProductsOpen(false);
+                  setHoveredHeading(null);
+                  setHoveredSub(null);
+                }}
+                onFocus={() => setProductsOpen(true)}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) setProductsOpen(false);
+                }}
+              >
+                {link}
+                {productsOpen && (() => {
+                  const section = hoveredHeading !== null ? productMenu[hoveredHeading] : null;
+                  const entry = section && hoveredSub !== null ? section.items[hoveredSub] : null;
+                  const itemClass = (active) =>
+                    `flex items-center justify-between px-4 py-2 text-sm font-medium transition-colors hover:bg-sky/30 hover:text-action ${
+                      active ? "bg-sky/30 text-action" : "text-navy"
+                    }`;
+                  const chevron = <span className="material-symbols-rounded text-[18px] leading-none">chevron_right</span>;
+
+                  return (
+                    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
+                      <div className="flex rounded-lg border border-mist bg-white shadow-lg">
+                        <div className="w-56 py-3">
+                          {productMenu.map((item, headingIndex) => (
+                            <a
+                              key={item.heading}
+                              href="#products"
+                              onMouseEnter={() => {
+                                setHoveredHeading(headingIndex);
+                                setHoveredSub(null);
+                              }}
+                              onClick={(event) => goToProduct(event, { group: item.group, index: 0, id: item.items[0].id })}
+                              className={itemClass(headingIndex === hoveredHeading)}
+                            >
+                              {item.heading}
+                              {chevron}
+                            </a>
+                          ))}
+                        </div>
+                        {section && (
+                        <div className="w-56 border-l border-mist py-3">
+                          {section.items.map((item) => (
+                            <a
+                              key={item.label}
+                              href="#products"
+                              onMouseEnter={() => setHoveredSub(item.products.length ? item.index : null)}
+                              onClick={(event) => goToProduct(event, { group: section.group, index: item.index, id: item.id })}
+                              className={itemClass(hoveredSub === item.index)}
+                            >
+                              {item.label}
+                              {item.products.length > 0 && chevron}
+                            </a>
+                          ))}
+                        </div>
+                        )}
+                        {entry && (
+                          <div className="w-72 border-l border-mist py-3">
+                            {entry.products.map((product, productIndex) => (
+                              <a
+                                key={product.title}
+                                href="#products"
+                                onClick={(event) => goToProduct(event, { group: section.group, index: entry.index, product: productIndex })}
+                                className="block px-4 py-2 text-sm text-slate transition-colors hover:bg-sky/30 hover:text-action"
+                              >
+                                {product.title}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            );
+          })}
         </nav>
 
         <a
