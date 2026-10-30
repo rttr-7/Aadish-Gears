@@ -82,7 +82,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-mist">
       <div className="page-container flex items-center justify-between gap-3 py-4 sm:gap-6">
         <a href="#home" className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <img src="/Aadish-Gears/AadishGearsLogo.png" alt="" width="40" height="40" className="shrink-0" />
+          <img src="/Aadish-Gears/AadishGearsLogo.png" alt="" width="48" height="48" className="shrink-0" />
           <span className="min-w-0 font-display text-xs font-bold leading-tight tracking-tight text-navy sm:text-base">
             AADISH GEARS &amp; TRANSMISSIONS PVT LTD
           </span>
