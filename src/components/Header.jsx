@@ -80,7 +80,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-mist">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:gap-6 sm:px-6 lg:px-10">
+      <div className="page-container flex items-center justify-between gap-3 py-4 sm:gap-6">
         <a href="#home" className="flex min-w-0 items-center gap-2 sm:gap-3">
           <img src="/Aadish-Gears/AadishGearsLogo.png" alt="" width="40" height="40" className="shrink-0" />
           <span className="min-w-0 font-display text-xs font-bold leading-tight tracking-tight text-navy sm:text-base">
@@ -88,14 +88,14 @@ export default function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-8 lg:-my-4 lg:flex lg:self-stretch">
           {nav.map((item) => {
             const link = (
               <a
                 href={item.href}
                 onClick={(event) => handleNavigation(event, item.href)}
-                className={`text-sm font-medium transition-colors ${
-                  active === item.href ? "text-action" : "text-slate hover:text-action"
+                className={`text-sm transition-colors ${
+                  active === item.href ? "font-bold text-action" : "font-medium text-slate hover:text-action"
                 }`}
               >
                 {item.label}
@@ -106,7 +106,7 @@ export default function Header() {
             return (
               <div
                 key={item.label}
-                className="relative py-2"
+                className="relative flex items-center self-stretch"
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => {
                   setProductsOpen(false);
@@ -118,7 +118,7 @@ export default function Header() {
                   if (!event.currentTarget.contains(event.relatedTarget)) setProductsOpen(false);
                 }}
               >
-                {link}
+                <span>{link}</span>
                 {productsOpen && (() => {
                   const section = hoveredHeading !== null ? productMenu[hoveredHeading] : null;
                   const entry = section && hoveredSub !== null ? section.items[hoveredSub] : null;
@@ -129,9 +129,10 @@ export default function Header() {
                   const chevron = <span className="material-symbols-rounded text-[18px] leading-none">chevron_right</span>;
 
                   return (
-                    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-                      <div className="flex rounded-lg border border-mist bg-white shadow-lg">
-                        <div className="w-56 py-3">
+                    // Anchored by the main column's centre (half of w-56), so extra columns grow to the right
+                    <div className="absolute left-1/2 top-full z-50 -translate-x-28 pt-px">
+                      <div className="flex items-stretch overflow-hidden rounded-b-lg border border-t-0 border-mist bg-white shadow-lg">
+                        <div className="w-56 shrink-0 py-3">
                           {productMenu.map((item, headingIndex) => (
                             <a
                               key={item.heading}
@@ -149,23 +150,23 @@ export default function Header() {
                           ))}
                         </div>
                         {section && (
-                        <div className="w-56 border-l border-mist py-3">
-                          {section.items.map((item) => (
-                            <a
-                              key={item.label}
-                              href="#products"
-                              onMouseEnter={() => setHoveredSub(item.products.length ? item.index : null)}
-                              onClick={(event) => goToProduct(event, { group: section.group, index: item.index, id: item.id })}
-                              className={itemClass(hoveredSub === item.index)}
-                            >
-                              {item.label}
-                              {item.products.length > 0 && chevron}
-                            </a>
-                          ))}
-                        </div>
+                          <div className="w-56 shrink-0 border-l border-mist py-3">
+                            {section.items.map((item) => (
+                              <a
+                                key={item.label}
+                                href="#products"
+                                onMouseEnter={() => setHoveredSub(item.products.length ? item.index : null)}
+                                onClick={(event) => goToProduct(event, { group: section.group, index: item.index, id: item.id })}
+                                className={itemClass(hoveredSub === item.index)}
+                              >
+                                {item.label}
+                                {item.products.length > 0 && chevron}
+                              </a>
+                            ))}
+                          </div>
                         )}
                         {entry && (
-                          <div className="w-72 border-l border-mist py-3">
+                          <div className="w-72 shrink-0 border-l border-mist py-3">
                             {entry.products.map((product, productIndex) => (
                               <a
                                 key={product.title}
@@ -190,9 +191,9 @@ export default function Header() {
         <a
           href="#contact"
           onClick={(event) => handleNavigation(event, "#contact")}
-          className="hidden shrink-0 rounded-full bg-action px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-action-hover lg:inline-block"
+          className="hidden shrink-0 rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover lg:inline-block"
         >
-          Send Us An Enquiry
+          Send An Enquiry
         </a>
 
         <button
@@ -216,8 +217,8 @@ export default function Header() {
                   setOpen(false);
                   handleNavigation(event, item.href);
                 }}
-                className={`text-sm font-medium ${
-                  active === item.href ? "text-action" : "text-slate hover:text-action"
+                className={`text-sm ${
+                  active === item.href ? "font-bold text-action" : "font-medium text-slate hover:text-action"
                 }`}
               >
                 {item.label}
@@ -229,9 +230,9 @@ export default function Header() {
                 setOpen(false);
                 handleNavigation(event, "#contact");
               }}
-              className="mt-2 rounded-full bg-action px-5 py-2.5 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-full bg-action px-6 py-3 text-center text-sm font-semibold text-white"
             >
-              Send Us An Enquiry
+              Send An Enquiry
             </a>
           </nav>
         </div>

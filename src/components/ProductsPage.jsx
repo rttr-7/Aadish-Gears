@@ -6,13 +6,15 @@ import {
   helicalGearboxProducts,
   promises,
 } from "../data/productsPage";
-import { INSPECTION_INSTRUMENTS } from "../data/aboutContent";
+import { INSPECTION_INSTRUMENTS, MACHINERY, panelGrid } from "../data/aboutContent";
+import MainBanner from "./MainBanner";
+import CtaBanner from "./CtaBanner";
 
 function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
   const desktopColumns = items.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5";
 
   return (
-    <div className={`mt-5 flex min-w-0 gap-5 overflow-x-auto border-b border-slate/20 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 sm:overflow-visible ${desktopColumns}`} role="tablist" aria-label={label}>
+    <div className={`mt-14 flex min-w-0 gap-3 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-line)] sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible md:grid-cols-3 lg:gap-5 ${desktopColumns}`} role="tablist" aria-label={label}>
       {items.map((item, index) => (
         <button
           key={item.label}
@@ -27,8 +29,8 @@ function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
               });
             }
           }}
-          className={`shrink-0 whitespace-nowrap border-b-2 px-2 py-3 text-xs font-bold transition-colors sm:shrink sm:whitespace-normal sm:px-3 sm:text-sm xl:whitespace-nowrap ${
-            index === selected ? "border-action text-action" : "border-transparent text-slate hover:text-action"
+          className={`shrink-0 whitespace-nowrap pb-[0.9rem] text-base transition-colors sm:shrink sm:whitespace-normal ${
+            index === selected ? "font-bold text-action shadow-[inset_0_-2px_0_var(--color-action)]" : "font-medium text-slate hover:text-action"
           }`}
         >
           {item.label}
@@ -38,19 +40,19 @@ function Tabs({ items, selected, onSelect, label, scrollTargetId }) {
   );
 }
 
-function ProductFeature({ title, image, alt, description, details, imageMaxWidth = "max-w-[500px]" }) {
+function ProductFeature({ id, spacing = "py-10", title, image, alt, description, details, imageMaxWidth = "max-w-[500px]" }) {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-9 lg:px-10">
+    <section id={id} className={`page-container scroll-mt-20 ${spacing}`}>
       <div>
-        <h2 id={`feature-${title.toLowerCase()}`} className="scroll-mt-24 font-display text-2xl font-bold text-navy">{title}</h2>
+        <h2 id={`feature-${title.toLowerCase()}`} className="scroll-mt-24 font-display text-3xl font-bold text-navy sm:text-4xl">{title}</h2>
         <div className="mt-5 grid gap-8 md:grid-cols-2 md:items-stretch">
           <div className="flex justify-center md:h-full">
             <img loading="lazy" decoding="async" src={image} alt={alt} className={`block h-auto w-full ${imageMaxWidth} object-contain md:h-full`} />
           </div>
           <div>
             <h3 className="font-display text-lg font-bold text-navy">{title}</h3>
-            {description && <p className="mt-4 text-sm leading-relaxed text-slate">{description}</p>}
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate">
+            {description && <p className="mt-4 text-sm leading-5 text-slate">{description}</p>}
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-5 text-slate">
               {details.map((detail) => <li key={detail}>{detail}</li>)}
             </ul>
           </div>
@@ -71,8 +73,7 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
     <dialog
       ref={dialogRef}
       aria-labelledby="inventory-title"
-      className={`m-auto max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] ${maxWidth} overflow-hidden rounded-3xl border-0 bg-white p-0 text-navy shadow-2xl`}
-      style={{ backdropFilter: "blur(5px)", backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+      className={`m-auto max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] ${maxWidth} overflow-hidden rounded-3xl border-0 bg-white p-0 text-navy shadow-2xl backdrop:bg-[rgba(4,18,38,0.78)] backdrop:backdrop-blur-[5px]`}
       onClose={onClose}
       onClick={(event) => {
         if (event.target === event.currentTarget) dialogRef.current?.close();
@@ -84,13 +85,13 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
             <p className="font-mono text-xs font-semibold uppercase tracking-wide text-action">{category}</p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h2 id="inventory-title" className="font-display text-2xl font-bold sm:text-3xl">{title}</h2>
-              <span className="rounded-lg bg-[#edf4ff] px-3 py-1 text-sm font-semibold text-action">{items.length} entries</span>
+              <span className="rounded-lg bg-pale-strong px-3 py-1 text-sm font-semibold text-action">{items.length} entries</span>
             </div>
           </div>
           <button
             type="button"
             aria-label={`Close ${title}`}
-            className="grid size-11 shrink-0 place-items-center rounded-lg bg-[#f3f6fa] text-3xl leading-none text-navy transition-colors hover:bg-[#e5edf7]"
+            className="grid size-11 shrink-0 place-items-center rounded-lg bg-pale text-3xl leading-none text-navy transition-colors hover:bg-pale-strong"
             onClick={() => dialogRef.current?.close()}
           >
             ×
@@ -102,18 +103,18 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
             <colgroup>
               {columns.map((column) => <col key={column.heading} className={column.width} />)}
             </colgroup>
-            <thead className="sticky top-0 z-10 bg-[#edf4fc] text-xs uppercase text-navy">
+            <thead className="sticky top-0 z-10 bg-pale-strong text-xs uppercase text-navy">
               <tr>
                 {columns.map((column) => (
-                  <th key={column.heading} className="border border-[#d3e1f0] px-3 py-3 font-bold">{column.heading}</th>
+                  <th key={column.heading} className="border border-line px-3 py-3 font-bold">{column.heading}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={index} className="odd:bg-white even:bg-[#f5f8fc]">
+                <tr key={index} className="odd:bg-white even:bg-pale">
                   {columns.map((column) => (
-                    <td key={column.heading} className="border border-[#d3e1f0] px-3 py-2.5">{column.value(item, index)}</td>
+                    <td key={column.heading} className="border border-line px-3 py-2.5">{column.value(item, index)}</td>
                   ))}
                 </tr>
               ))}
@@ -121,11 +122,11 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
           </table>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-[#d3e1f0] px-6 py-4 sm:px-8">
+        <div className="flex items-center justify-between gap-4 border-t border-line px-6 py-4 sm:px-8">
           <p className="text-sm text-slate">Showing all {items.length} {entryLabel} entries</p>
           <button
             type="button"
-            className="rounded-lg bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
+            className="rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
             onClick={() => dialogRef.current?.close()}
           >
             Close
@@ -148,10 +149,10 @@ function ProductCarousel({ products, selected, onSelect, label }) {
         </div>
         <div>
           <h3 className="font-display text-lg font-bold">{product.title}</h3>
-          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-black">
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-5 text-slate">
             {product.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
           </ul>
-          <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-black">
+          <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-slate">
             <span>Application:</span>
             <div className="flex flex-wrap gap-2">
               {applications.map((application) => (
@@ -163,7 +164,7 @@ function ProductCarousel({ products, selected, onSelect, label }) {
           </div>
         </div>
       </div>
-      <div className="mt-6 flex items-center justify-center gap-5 bg-white py-2" aria-label={`${label} products`}>
+      <div className="mt-6 flex items-center justify-center gap-5 bg-white pt-2" aria-label={`${label} products`}>
         <button
           type="button"
           aria-label={`Previous ${label} product`}
@@ -172,7 +173,7 @@ function ProductCarousel({ products, selected, onSelect, label }) {
         >
           <span aria-hidden="true">&#8249;</span>
         </button>
-        <div className="flex items-center gap-2" role="group" aria-label={`Choose ${label} product`}>
+        <div className="flex items-center gap-[0.45rem]" role="group" aria-label={`Choose ${label} product`}>
           {products.map((item, index) => (
             <button
               key={item.title}
@@ -180,7 +181,9 @@ function ProductCarousel({ products, selected, onSelect, label }) {
               aria-label={`Show ${item.title}`}
               aria-current={index === selected ? "true" : undefined}
               onClick={() => onSelect(index)}
-              className={`size-2.5 rounded-full transition-colors ${index === selected ? "bg-[#0d1b3e]" : "bg-[#ccc] hover:bg-[#aaa]"}`}
+              className={`h-2 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-action ${
+                index === selected ? "w-[1.2rem] bg-action" : "w-2 bg-slate/20"
+              }`}
             />
           ))}
         </div>
@@ -203,6 +206,7 @@ export default function ProductsPage() {
   const [helicalProductIndex, setHelicalProductIndex] = useState(0);
   const [gearIndex, setGearIndex] = useState(0);
   const [showInspectionDialog, setShowInspectionDialog] = useState(false);
+  const [showMachineryDialog, setShowMachineryDialog] = useState(false);
   useEffect(() => {
     const applyTarget = () => {
       let target;
@@ -239,6 +243,13 @@ export default function ProductsPage() {
   }, []);
   const gearbox = gearboxes[gearboxIndex];
   const gear = gearTypes[gearIndex];
+  const machineryColumns = [
+    { heading: "No", width: "w-16", value: (_, index) => index + 1 },
+    { heading: "Name of machine", width: "w-[24%]", value: (machine) => machine.name },
+    { heading: "Make", width: "w-[12%]", value: (machine) => machine.make },
+    { heading: "No off", width: "w-[8%]", value: (machine) => machine.quantity },
+    { heading: "Machine details and specifications", value: (machine) => machine.details },
+  ];
   const inspectionColumns = [
     { heading: "Sr No", width: "w-14", value: (_, index) => String(index + 1).padStart(2, "0") },
     { heading: "Type Of Instrument", width: "w-[54%]", value: (instrument) => instrument.type },
@@ -248,27 +259,15 @@ export default function ProductsPage() {
 
   return (
     <main id="products" className="bg-white text-navy">
-      <section className="bg-navy text-white">
-        <div
-          className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-20"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        >
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Our Expertise</p>
-            <h1 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl">Powering Performance Through Precision</h1>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-sky/90 sm:text-base">
-              Explore our range of precision-engineered products designed for reliability, consistency and long-term performance.
-            </p>
-          </div>
-        </div>
-      </section>
+      <MainBanner
+        subHeader="Our Expertise"
+        header="Powering Performance Through Precision"
+        description="Explore our range of precision-engineered products designed for reliability, consistency and long-term performance."
+      />
 
-      <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14" aria-labelledby="gearbox-title">
+      <section id="products-gearboxes" className="page-container scroll-mt-20 py-20" aria-labelledby="gearbox-title">
         <div>
-          <h2 id="gearbox-title" className="font-display text-2xl font-bold">Customized Gears Boxes</h2>
+          <h2 id="gearbox-title" className="font-display text-3xl font-bold sm:text-4xl">Customized Gears Boxes</h2>
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearboxes} selected={gearboxIndex} onSelect={setGearboxIndex} label="Gearbox types" scrollTargetId="gearbox-panel" />
           {gearboxIndex < 2 ? (
@@ -289,10 +288,10 @@ export default function ProductsPage() {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold">{gearbox.title}</h3>
-                <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-black">
+                <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-5 text-slate">
                   {gearbox.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                 </ul>
-                <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-black">
+                <div className="mt-5 flex flex-col items-start gap-2 text-sm font-medium text-slate">
                   <span>Application:</span>
                   <div className="flex flex-wrap gap-2">
                     {gearbox.applications.map((application) => (
@@ -308,36 +307,36 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-[#f3f8fe]">
-        <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+      <section className="bg-pale">
+        <div className="page-container py-20">
           <div>
-            <h2 className="font-display text-2xl font-bold">Our Promise</h2>
+            <h2 className="font-display text-3xl font-bold sm:text-4xl">Our Promise</h2>
             <p className="mt-2 text-sm text-slate">Finishing processes we don’t run in-house are handled by a small set of trusted, ISO-certified vendors.</p>
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {promises.map(([icon, label]) => (
-                <div key={label} className="flex min-h-16 items-center justify-start gap-3 rounded-xl bg-[#d6e7f9] px-4 py-3 text-sm font-semibold text-navy">
-                  <span className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-white text-action" aria-hidden="true">
-                    <span className="material-symbols-rounded text-[20px] leading-none">{icon}</span>
+                <div key={label} className="flex min-h-16 items-center justify-start gap-3 rounded-xl bg-sky px-4 py-3 text-sm font-semibold text-navy">
+                  <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-white text-black" aria-hidden="true">
+                    <span className="material-symbols-rounded leading-none">{icon}</span>
                   </span>
                   <span className="min-w-0 text-left">{label}</span>
                 </div>
               ))}
             </div>
             <div className="mt-8">
-              <h2 className="font-display text-xl font-bold">Why Trust Our Manufacturing</h2>
+              <h2 className="font-display text-3xl font-bold sm:text-4xl">Why Trust Our Manufacturing</h2>
               <p className="mt-2 text-sm text-slate">Our advanced machinery and precision instruments enable us to deliver consistent quality, accuracy and reliability across every product.</p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <a href="#machinery-list-from-products" className="rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Machine List</a>
-                <button type="button" onClick={() => setShowInspectionDialog(true)} className="rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Instrument List</button>
+                <button type="button" onClick={() => setShowMachineryDialog(true)} className="rounded-full border-2 border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Machine List</button>
+                <button type="button" onClick={() => setShowInspectionDialog(true)} className="rounded-full border-2 border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white">View Our Instrument List</button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14" aria-labelledby="gears-title">
+      <section id="products-gears" className="page-container scroll-mt-20 py-20" aria-labelledby="gears-title">
         <div>
-          <h2 id="gears-title" className="font-display text-2xl font-bold">Gears</h2>
+          <h2 id="gears-title" className="font-display text-3xl font-bold sm:text-4xl">Gears</h2>
           <p className="mt-2 text-sm text-slate">Five product families, designed and machined in-house from a single custom gearbox to bulk production runs.</p>
           <Tabs items={gearTypes} selected={gearIndex} onSelect={setGearIndex} label="Gear types" scrollTargetId="gears-panel" />
           <div id="gears-panel" className="mt-7 grid gap-8 md:grid-cols-2 md:items-stretch">
@@ -345,41 +344,37 @@ export default function ProductsPage() {
             <div>
               <h3 className="font-display text-lg font-bold">{gear.title}</h3>
               {gear.description?.length > 1 && (
-                <ul className="mt-4 list-disc space-y-0 pl-5 text-sm leading-relaxed text-slate">
+                <ul className="mt-4 list-disc space-y-0 pl-5 text-sm leading-5 text-slate">
                   {gear.description.map((point) => <li key={point}>{point}</li>)}
                 </ul>
               )}
               {gear.bullets.length > 0 && (
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate">
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-5 text-slate">
                   {gear.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                 </ul>
               )}
-              {gear.description?.length === 1 && <p className="mt-4 text-sm leading-relaxed text-slate">{gear.description[0]}</p>}
-              {gear.showCatalog && <a href="#gallery" className="mt-6 inline-flex rounded-md border border-action px-4 py-2 text-xs font-semibold text-action transition-colors hover:bg-action hover:text-white">View Catalog</a>}
+              {gear.description?.length === 1 && <p className="mt-4 text-sm leading-5 text-slate">{gear.description[0]}</p>}
+              {gear.showCatalog && <a href="#gallery" className="mt-6 inline-flex rounded-full border-2 border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white">View Catalog</a>}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-navy text-white">
-        <div
-          className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-14"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        >
-          <div className="mx-auto w-full lg:w-[90%]">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">Our Positioning</p>
-            <h2 className="mt-3 max-w-5xl font-display text-2xl font-bold leading-tight sm:text-3xl">
+      <section className="bg-navy text-white" style={panelGrid}>
+        <div className="page-container py-20">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] font-mono text-mint">Our Positioning</p>
+            <h2 className="mt-3 max-w-5xl font-display text-3xl font-bold sm:text-4xl">
               From concept to finished product, we bring precision, quality and reliability to every transmission solution.
             </h2>
-            <a href="#about-us" className="mt-5 inline-flex rounded-md bg-action px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-action-hover">Learn More About Us</a>
+            <a href="#about-us" className="mt-5 inline-flex rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover">Learn More About Us</a>
           </div>
         </div>
       </section>
 
       <ProductFeature
+        id="products-worm-shafts"
+        spacing="pb-10 pt-20"
         title="Worm Shafts"
         image="/Aadish-Gears/images/Gallery/WORM%20SHAFTS.jpg"
         alt="Precision worm shafts"
@@ -391,6 +386,7 @@ export default function ProductsPage() {
         ]}
       />
       <ProductFeature
+        id="products-sprockets"
         title="Sprockets"
         image="/Aadish-Gears/images/Gallery/Sprockets.JPG"
         alt="Precision sprockets"
@@ -404,6 +400,8 @@ export default function ProductsPage() {
         ]}
       />
       <ProductFeature
+        id="products-splines"
+        spacing="pb-20 pt-10"
         title="Splines"
         image="/Aadish-Gears/images/Gallery/SPLINE%20SHAFTS.jpg"
         alt="Precision spline shafts"
@@ -417,24 +415,19 @@ export default function ProductsPage() {
         ]}
       />
 
-      <section className="bg-navy text-white">
-        <div
-          className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-14"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        >
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">Get in touch with us</p>
-              <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">Have a drawing or a rough sketch?</h2>
-              <p className="mt-2 text-sm text-sky/90">Send us your requirement and our team will get back with a quote.</p>
-            </div>
-            <a href="#contact" className="shrink-0 rounded-md bg-action px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover">Send An Enquiry</a>
-          </div>
-        </div>
-      </section>
+      <CtaBanner />
+      {showMachineryDialog && (
+        <InventoryDialog
+          onClose={() => setShowMachineryDialog(false)}
+          category="Manufacturing Excellence"
+          title="Machinery List"
+          items={MACHINERY}
+          columns={machineryColumns}
+          entryLabel="machinery"
+          maxWidth="max-w-[1450px]"
+          minTableWidth="min-w-[900px]"
+        />
+      )}
       {showInspectionDialog && (
         <InventoryDialog
           onClose={() => setShowInspectionDialog(false)}

@@ -41,6 +41,7 @@ export const products = [
   {
     icon: "settings",
     title: "Customized Gearboxes",
+    href: "#products-gearboxes",
     description:
       "Helical, Worm, Spur quarter-turn and combination gearboxes for electrical isolators, EVs, automation etc to required specs.",
   },
@@ -48,12 +49,14 @@ export const products = [
   {
     icon: "hub",
     title: "Gears",
+    href: "#products-gears",
     description: "Spur, helical and worm gears precision-cut up to 350mm OD.",
   },
 
   {
     icon: "link",
     title: "Sprockets",
+    href: "#products-sprockets",
     description:
       "Simplex to triplex, 3/8\" to 1\" sprockets for chain-driven mechanisms.",
   },
@@ -61,12 +64,14 @@ export const products = [
   {
     icon: "straighten",
     title: "Splines",
+    href: "#products-splines",
     description: "Precision spline shafts made to your exact dimensions.",
   },
 
   {
     icon: "sync",
     title: "Worm Shafts",
+    href: "#products-worm-shafts",
     description: "Hardened and ground worm shafts for smooth, quiet drives.",
   },
 ];

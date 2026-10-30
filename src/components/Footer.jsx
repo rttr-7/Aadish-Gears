@@ -2,14 +2,14 @@ import { footerLinks } from "../data/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-deep text-sky/90">
-      <div className="mx-auto max-w-none px-6 pb-5 pt-8 lg:px-12 lg:pb-6 lg:pt-10">
+    <footer className="bg-navy-deep text-white">
+      <div className="page-container pb-5 pt-8 lg:pb-6 lg:pt-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1.2fr] lg:gap-x-5">
           <div>
             <p className="font-display text-base font-bold text-white lg:whitespace-nowrap">
               Aadish Gears &amp; Transmissions Pvt. Ltd.
             </p>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed">
+            <p className="mt-3 max-w-sm text-sm leading-5">
               Sr. No. 23/3/1, Milkat No. 28/2, Shed No 2, Wadekar Industrial
               Estate, Near Siddhi Chowk, Narhe, Pune 411041, MH, India
             </p>
@@ -72,14 +72,6 @@ export default function Footer() {
                 referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
-            <a
-              href="https://www.google.com/maps/dir/?api=1&destination=18.4380258%2C73.8256733"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-block text-xs font-semibold text-white/90 underline underline-offset-2 hover:text-white"
-            >
-              Open in Google Maps
-            </a>
           </div>
         </div>
 

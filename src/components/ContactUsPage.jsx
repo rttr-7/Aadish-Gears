@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MainBanner from './MainBanner';
+import { COUNTRIES } from '../data/countries';
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -74,65 +76,30 @@ export default function ContactUsPage() {
   ];
 
   return (
-    <div className="bg-white text-navy font-sans">
+    <div className="bg-white text-navy">
       {/* Hero Header Section */}
-      <section className="relative overflow-hidden bg-navy">
-        <div className="relative flex min-h-[220px] flex-col justify-end lg:min-h-[260px]">
-          {/* Background photo */}
-          <div className="absolute inset-0 z-0">
-            <img
-              src="/Aadish-Gears/images/Gear.png"
-              alt="Gears background"
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-
-          {/* Solid Dark Navy Bottom Banner */}
-          <div className="relative z-10 w-full border-t border-white/10 bg-navy/95 shadow-2xl">
-            {/* Grid pattern overlay */}
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-                backgroundSize: "44px 44px, 44px 44px",
-              }}
-            />
-
-            {/* Content Container */}
-            <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-12">
-              <div className="w-full max-w-3xl text-left">
-                <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-mint">
-                  Get in touch with us
-                </p>
-                <h1 className="font-display text-2xl font-bold text-white sm:text-3xl">
-                  Are you ready with your enquiry?
-                </h1>
-                <p className="mt-1 text-xs text-sky/90 sm:text-sm">
-                  Send us your requirement below and our team will get back with a quote.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MainBanner
+        subHeader="Get in touch with us"
+        header="Are you ready with your enquiry?"
+        description="Send us your requirement below and our team will get back with a quote."
+      />
 
       {}
       {/* Main Form & Contact Details Section */}
-      <section className="mx-auto max-w-5xl px-6 py-10 lg:px-10">
+      <section className="page-container py-20">
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-12 md:items-start">
           
           {/* Left Column: Compact Form & Product Grid */}
           <div>
-            <h2 className="mb-1 font-display text-2xl font-bold text-navy sm:text-3xl">
+            <h2 className="mb-1 font-display text-3xl font-bold text-navy sm:text-4xl">
               Send us your requirement
             </h2>
-            <p className="mb-5 text-xs text-slate-500">
+            <p className="mb-5 text-xs text-slate">
               <span className="font-semibold text-navy">*</span> indicates a required field
             </p>
 
             {/* Compact Form */}
-            <form className="grid gap-x-3 gap-y-3 sm:grid-cols-2" onSubmit={handleSubmit}>
+            <form className="grid gap-x-3 gap-y-3 sm:grid-cols-2 md:w-4/5" onSubmit={handleSubmit}>
               <label className="block text-xs font-semibold text-navy">
                 <span className="mb-1 block">Full Name *</span>
                 <input
@@ -141,7 +108,7 @@ export default function ContactUsPage() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate bg-white px-3 py-2 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
                 />
               </label>
 
@@ -152,7 +119,7 @@ export default function ContactUsPage() {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate bg-white px-3 py-2 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
                 />
               </label>
 
@@ -164,7 +131,7 @@ export default function ContactUsPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate bg-white px-3 py-2 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
                 />
               </label>
 
@@ -176,20 +143,25 @@ export default function ContactUsPage() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  className="w-full rounded-md border border-slate bg-white px-3 py-2 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
                 />
               </label>
 
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
                 <span className="mb-1 block">Country *</span>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleInputChange}
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
-                >
-                  <option>India</option>
-                </select>
+                <div className="relative">
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    className="w-full appearance-none rounded-md border border-slate bg-white py-2 pl-3 pr-10 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
+                  >
+                    {COUNTRIES.map((country) => <option key={country}>{country}</option>)}
+                  </select>
+                  <span className="material-symbols-rounded pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xl text-slate" aria-hidden="true">
+                    expand_more
+                  </span>
+                </div>
               </label>
 
               <label className="block text-xs font-semibold text-navy sm:col-span-2">
@@ -199,8 +171,8 @@ export default function ContactUsPage() {
                   value={formData.requirement}
                   onChange={handleInputChange}
                   required
-                  rows={3}
-                  className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 outline-none transition-colors focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                  rows={5}
+                  className="w-full rounded-md border border-slate bg-white px-3 py-2 text-xs text-navy outline-none transition-colors focus:border-action focus:ring-1 focus:ring-action"
                   placeholder="Tell us what you need — product type, specs or drawing reference, and quantity."
                 />
               </label>
@@ -219,7 +191,7 @@ export default function ContactUsPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </button>
@@ -227,9 +199,9 @@ export default function ContactUsPage() {
             </form>
 
             {/* Product Image Grid (3x3 matching target design) */}
-            <div className="mx-auto mt-8 grid w-full max-w-[380px] grid-cols-3 gap-2">
+            <div className="mt-8 grid w-full max-w-[380px] grid-cols-3 gap-2">
               {productImages.map((product) => (
-                <div key={product.id} className="flex aspect-[1.1] items-center justify-center bg-white p-1">
+                <div key={product.id} className="flex aspect-[1.1] items-center justify-center bg-white">
                   <img
                     src={product.src}
                     alt={product.alt}
@@ -241,44 +213,44 @@ export default function ContactUsPage() {
           </div>
 
           {/* Right Column: Contact Details Sidebar */}
-          <aside className="space-y-6 pt-1 md:pt-14 md:pl-4">
+          <aside className="space-y-10 pt-1 md:pt-14 md:pl-4">
             {/* Call Us */}
-            <div className="flex items-start gap-3">
-              <span className="material-symbols-rounded text-xl text-navy mt-0.5">call</span>
+            <div className="flex flex-col items-start gap-2">
+              <span className="material-symbols-rounded text-xl text-navy" aria-hidden="true">call</span>
               <div>
                 <h3 className="font-display text-base font-bold text-navy">Call Us</h3>
-                <p className="mt-0.5 text-xs text-slate-600 font-medium">+91 92256 43290</p>
-                <p className="text-xs text-slate-600 font-medium">+91 74990 50575</p>
+                <p className="mt-0.5 text-xs text-slate font-medium">+91 92256 43290</p>
+                <p className="text-xs text-slate font-medium">+91 74990 50575</p>
               </div>
             </div>
 
             {/* Email Us */}
-            <div className="flex items-start gap-3">
-              <span className="material-symbols-rounded text-xl text-navy mt-0.5">mail</span>
+            <div className="flex flex-col items-start gap-2">
+              <span className="material-symbols-rounded text-xl text-navy" aria-hidden="true">mail</span>
               <div>
                 <h3 className="font-display text-base font-bold text-navy">Email Us</h3>
-                <p className="mt-0.5 text-xs text-slate-600 font-medium">aadishgears@yahoo.co.in</p>
-                <p className="text-xs text-slate-600 font-medium">sales@aadishgears.com</p>
+                <p className="mt-0.5 text-xs text-slate font-medium">aadishgears@yahoo.co.in</p>
+                <p className="text-xs text-slate font-medium">sales@aadishgears.com</p>
               </div>
             </div>
 
             {/* Courier & Logistics */}
-            <div className="flex items-start gap-3">
-              <span className="material-symbols-rounded text-xl text-navy mt-0.5">local_shipping</span>
+            <div className="flex flex-col items-start gap-2">
+              <span className="material-symbols-rounded text-xl text-navy" aria-hidden="true">local_shipping</span>
               <div>
                 <h3 className="font-display text-base font-bold text-navy">Courier &amp; Logistics</h3>
-                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                <p className="mt-0.5 text-xs leading-5 text-slate">
                   Both Trackon Couriers and DTDC operate offices right in Narhe (411041), so sample and material dispatch to and from our facility is straightforward.
                 </p>
               </div>
             </div>
 
             {/* Factory & Office */}
-            <div className="flex items-start gap-3">
-              <span className="material-symbols-rounded text-xl text-navy mt-0.5">location_on</span>
+            <div className="flex flex-col items-start gap-2">
+              <span className="material-symbols-rounded text-xl text-navy" aria-hidden="true">location_on</span>
               <div>
                 <h3 className="font-display text-base font-bold text-navy">Factory &amp; Office</h3>
-                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                <p className="mt-0.5 text-xs leading-5 text-slate">
                   Sr. No. 23/3/1, Milkat No. 28/2, Shed No 2 Wadekar Industrial Estate, Near Siddhi Chowk, Narhe, Pune 411041, MH, India
                 </p>
               </div>
@@ -286,8 +258,7 @@ export default function ContactUsPage() {
 
             {/* Map of the shop */}
             <div className="mt-5">
-              <p className="mb-1.5 text-xs font-semibold text-navy">Aadish Gears &amp; Transmission Pvt. Ltd.</p>
-              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+              <div className="overflow-hidden rounded-xl border border-line shadow-sm">
                 <iframe
                   title="Aadish Gears Shop Location"
                   src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
@@ -297,14 +268,6 @@ export default function ContactUsPage() {
                   referrerPolicy="strict-origin-when-cross-origin"
                 />
               </div>
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=18.4380258%2C73.8256733"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-block text-xs font-semibold text-action underline underline-offset-2 hover:text-action-hover"
-              >
-                Open in Google Maps
-              </a>
             </div>
           </aside>
 

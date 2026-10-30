@@ -1,60 +1,27 @@
-const fadedLogos = [];
+import MainBanner from './MainBanner'
 
 export default function Hero() {
   return (
-    <section
+    <MainBanner
       id="home"
-      className="relative overflow-hidden bg-navy"
-      style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(15,98,254,0.12), transparent 55%), linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-        backgroundSize: "auto, 44px 44px, 44px 44px",
-      }}
+      subHeader={"Precision transmission products manufacturing"}
+      header={"Customized Gears, Gearboxes and Sprockets, engineered to desired spec"}
+      description={"We design & manufacture precision transmission products in bulk for OEMs across the globe"}
     >
-            <div className="mx-auto max-w-7xl px-6 pb-20 pt-12 lg:px-10 lg:pt-20">
-        <div>
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-mint">
-            Precision transmission products manufacturing
-          </p>
-          <h1 className="w-full max-w-7xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[60px]">
-            Customized Gears, Gearboxes and Sprockets, engineered to desired spec
-          </h1>
-          <p className="mt-6 max-w-md text-base text-sky/90">
-            We design &amp; manufacture precision transmission products in
-            bulk for OEM&rsquo;s across the globe
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#products"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy transition-transform hover:-translate-y-0.5"
-            >
-              View Our Products
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Get A Quote
-            </a>
-          </div>
-        </div>
-
-        <div
-          className="relative hidden lg:block"
-          aria-hidden="true"
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a
+          href="#products"
+          className="rounded-full border-2 border-white px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
         >
-          <div className="absolute right-0 top-0 flex flex-col items-end gap-6 opacity-40">
-            {fadedLogos.map((logo) => (
-              <span
-                key={logo}
-                className="font-display text-lg font-bold tracking-wide text-white"
-              >
-                {logo}
-              </span>
-            ))}
-          </div>
-        </div>
+          View Our Products
+        </a>
+        <a
+          href="#contact"
+          className="rounded-full border-2 border-white bg-white px-6 py-3 text-sm font-semibold text-navy transition-transform hover:-translate-y-0.5"
+        >
+          Get A Quote
+        </a>
       </div>
-    </section>
+    </MainBanner>
   );
 }

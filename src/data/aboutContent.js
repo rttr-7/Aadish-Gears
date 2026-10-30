@@ -180,7 +180,17 @@ export const TABS = [
 ];
 
 export const panelGrid = {
-  backgroundImage:
-    "linear-gradient(180deg, rgba(15,98,254,0.12), transparent 55%), linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-  backgroundSize: "auto, 44px 44px, 44px 44px",
+  backgroundImage: [
+    // Grid lines
+    "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+    "linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+    // Soft glows scattered across the panel (#0B2A4D, #081F3B)
+    "radial-gradient(circle at 12% 20%, #0B2A4D, transparent 35%)",
+    "radial-gradient(circle at 78% 15%, #081F3B, transparent 30%)",
+    "radial-gradient(circle at 92% 75%, #0B2A4D, transparent 35%)",
+    "radial-gradient(circle at 45% 95%, #081F3B, transparent 30%)",
+  ].join(", "),
+  backgroundSize: "24px 24px, 24px 24px, auto, auto, auto, auto",
+  // Base colour, overrides bg-navy
+  backgroundColor: "#071A33",
 };

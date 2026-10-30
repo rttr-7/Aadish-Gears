@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { INSPECTION_INSTRUMENTS, MACHINERY, TABS } from "../../data/aboutContent";
 
 const styles = `
-  .about-tab{background:none;border:none;padding:0;border-bottom:1px solid #d0d5dd;font:inherit;font-size:.6rem;font-weight:700;color:#434e58;cursor:pointer;white-space:nowrap;min-width:0;padding-bottom:.9rem;}@media (min-width:640px){.about-tab{font-size:.75rem;white-space:normal;flex:1;}}@media (min-width:1024px){.about-tab{font-size:.8rem;}}
-  .about-tab.active{color:#0f62fe;border-bottom-width:2px;border-color:#0f62fe;}
+  .about-tab{background:none;border:none;padding:0;font:inherit;font-size:16px;font-weight:500;color:var(--color-slate);cursor:pointer;white-space:nowrap;min-width:0;padding-bottom:.9rem;}@media (min-width:640px){.about-tab{white-space:normal;flex:1;}}
+  .about-tab.active{color:var(--color-action);font-weight:700;box-shadow:inset 0 -2px var(--color-action);}
   .about-tabs{scrollbar-width:none;}
   .about-tabs::-webkit-scrollbar{display:none;}
   .about-dots{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-top:1rem;}
-  .about-dots button{display:inline-block;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(67,78,88,.2);cursor:pointer;}
-  .about-dots button.active{width:1.2rem;height:8px;border-radius:999px;background:#0f62fe;}
-  .about-dots button:focus-visible{outline:2px solid #0f62fe;outline-offset:3px;}
+  .about-dots button{display:inline-block;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:color-mix(in srgb,var(--color-slate) 20%,transparent);cursor:pointer;}
+  .about-dots button.active{width:1.2rem;height:8px;border-radius:999px;background:var(--color-action);}
+  .about-dots button:focus-visible{outline:2px solid var(--color-action);outline-offset:3px;}
   .machinery-dialog::backdrop{background:rgba(4,18,38,.78);backdrop-filter:blur(5px);}
 `;
 
@@ -67,13 +67,13 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
             <p className="font-mono text-xs font-semibold uppercase tracking-wide text-action">{category}</p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h2 id="inventory-title" className="font-display text-2xl font-bold sm:text-3xl">{title}</h2>
-              <span className="rounded-lg bg-[#edf4ff] px-3 py-1 text-sm font-semibold text-action">{items.length} entries</span>
+              <span className="rounded-lg bg-pale-strong px-3 py-1 text-sm font-semibold text-action">{items.length} entries</span>
             </div>
           </div>
           <button
             type="button"
             aria-label={`Close ${title}`}
-            className="grid size-11 shrink-0 place-items-center rounded-lg bg-[#f3f6fa] text-3xl leading-none text-navy transition-colors hover:bg-[#e5edf7]"
+            className="grid size-11 shrink-0 place-items-center rounded-lg bg-pale text-3xl leading-none text-navy transition-colors hover:bg-pale-strong"
             onClick={() => dialogRef.current?.close()}
           >
             ×
@@ -85,18 +85,18 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
             <colgroup>
               {columns.map((column) => <col key={column.heading} className={column.width} />)}
             </colgroup>
-            <thead className="sticky top-0 z-10 bg-[#edf4fc] text-xs uppercase text-navy">
+            <thead className="sticky top-0 z-10 bg-pale-strong text-xs uppercase text-navy">
               <tr>
                 {columns.map((column) => (
-                  <th key={column.heading} className="border border-[#d3e1f0] px-3 py-3 font-bold">{column.heading}</th>
+                  <th key={column.heading} className="border border-line px-3 py-3 font-bold">{column.heading}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={index} className="odd:bg-white even:bg-[#f5f8fc]">
+                <tr key={index} className="odd:bg-white even:bg-pale">
                   {columns.map((column) => (
-                    <td key={column.heading} className="border border-[#d3e1f0] px-3 py-2.5">{column.value(item, index)}</td>
+                    <td key={column.heading} className="border border-line px-3 py-2.5">{column.value(item, index)}</td>
                   ))}
                 </tr>
               ))}
@@ -104,11 +104,11 @@ function InventoryDialog({ onClose, category, title, items, columns, entryLabel,
           </table>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-[#d3e1f0] px-6 py-4 sm:px-8">
+        <div className="flex items-center justify-between gap-4 border-t border-line px-6 py-4 sm:px-8">
           <p className="text-sm text-slate">Showing all {items.length} {entryLabel} entries</p>
           <button
             type="button"
-            className="rounded-lg bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
+            className="rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
             onClick={() => dialogRef.current?.close()}
           >
             Close
@@ -130,7 +130,7 @@ export default function WhyWeSucceedSection() {
     if (activeTab === 0) {
       const interval = setInterval(() => {
         setCarouselImageIndex((prev) => (prev + 1) % GALLERY2_IMAGES.length);
-      }, 5000);
+      }, 2000);
       return () => clearInterval(interval);
     }
   }, [activeTab]);
@@ -152,11 +152,11 @@ export default function WhyWeSucceedSection() {
   ];
 
   return (
-    <section id="why-we-succeed" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-12 lg:px-10">
+    <section id="why-we-succeed" className="page-container scroll-mt-24 pb-20 pt-10">
       <style>{styles}</style>
 
       <h2 className="mb-8 font-display text-3xl font-bold text-navy sm:mb-12 lg:mb-24 sm:text-4xl">Why We Succeed</h2>
-      <div className="about-tabs flex w-full gap-3 overflow-x-auto border-b border-slate/15 pb-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible lg:grid-cols-5 lg:gap-5">
+      <div className="about-tabs flex w-full gap-3 overflow-x-auto pb-0 shadow-[inset_0_-1px_0_var(--color-line)] sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible lg:grid-cols-5 lg:gap-5">
         {TABS.map((t, i) => (
           <button
             key={t.label}
@@ -170,7 +170,7 @@ export default function WhyWeSucceedSection() {
         ))}
       </div>
 
-      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 lg:mt-10 lg:gap-8 lg:grid-cols-2 lg:items-start">
+      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 lg:mt-10 lg:gap-[60px] lg:grid-cols-2 lg:items-start">
         <div>
           <div className="overflow-hidden border border-slate/25 bg-white">
             <img loading="lazy" decoding="async" src={tabImage.src} alt={tabImage.alt} className="block h-auto w-full" />
@@ -220,18 +220,18 @@ export default function WhyWeSucceedSection() {
             </div>
           ))}
           {tab.paragraphs?.map((p, i) => (
-            <p key={i} className="mt-3 text-sm leading-relaxed text-slate sm:mt-4">{p}</p>
+            <p key={i} className="mt-3 text-sm leading-5 text-slate sm:mt-4">{p}</p>
           ))}
           {tab.cta && (activeTab === 0 || activeTab === 2 ? (
             <button
               type="button"
-              className="mt-6 inline-flex rounded-full border border-navy/25 bg-transparent px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
+              className="mt-6 inline-flex rounded-full border-2 border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white"
               onClick={() => setActiveInventory(activeTab === 0 ? "machinery" : "inspection")}
             >
               {tab.cta}
             </button>
           ) : (
-            <a href="#" className="mt-6 inline-flex rounded-full border border-navy/25 bg-transparent px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white">
+            <a href="#" className="mt-6 inline-flex rounded-full border-2 border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white">
               {tab.cta}
             </a>
           ))}
