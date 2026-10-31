@@ -62,7 +62,14 @@ export default function Footer() {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-white">
               Find Us
             </p>
-            <div className="overflow-hidden rounded-lg border border-white/10">
+            <div className="relative overflow-hidden rounded-lg border border-white/10">
+              <a
+                href="https://www.google.com/maps/dir//Aadish+Gears+%26+Transmission+Pvt+Ltd+-+Transmission+Products+Manufacturer,+S.+No.+23%2F3%2F1+Mikat+No.+28%2F2+Wadekar+Industrial+Estate,+near+Siddhi+Chowk,+Narhe,+Pune,+Maharashtra+411041/@18.4480217,73.8307512,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bc2958fcb83f527:0x6c04d3d87819ea42!2m2!1d73.8259301!2d18.4380014"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Aadish Gears location and directions in Google Maps"
+                className="absolute inset-0 z-10"
+              />
               <iframe
                 title="Aadish Gears Shop Location"
                 src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
