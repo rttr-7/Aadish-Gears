@@ -1,13 +1,11 @@
+import { panelGrid } from "../data/aboutContent";
+
 export default function CtaBanner() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-navy" style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(15,98,254,0.12), transparent 55%), linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-        backgroundSize: "auto, 44px 44px, 44px 44px",
-      }}>
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-16 lg:flex-row lg:items-center lg:px-10">
+    <section className="relative overflow-hidden bg-navy" style={panelGrid}>
+      <div className="page-container flex flex-col items-start justify-between gap-6 py-20 lg:flex-row lg:items-center">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] font-mono text-mint">
             Get in touch with us
           </p>
           <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
@@ -19,7 +17,8 @@ export default function CtaBanner() {
         </div>
 
         <a
-          href="mailto:aadishgears@yahoo.co.in"
+          href="#contact"
+          onClick={() => window.sessionStorage.setItem("navigation-scroll", "top")}
           className="shrink-0 rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
         >
           Send An Enquiry

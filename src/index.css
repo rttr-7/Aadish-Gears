@@ -3,6 +3,11 @@
 @theme {
   --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --text-sm: 0.9375rem;
+
+  --container-page: 78rem;
 
   --color-ink: #000000;
   --color-paper: #ffffff;
@@ -14,12 +19,34 @@
 
   --color-sky: #d3e5f8;
   --color-navy: #0b2750;
-  --color-navy-deep: #081d3d;
+  --color-navy-deep: #081227;
   --color-mint: #31ff98;
+
+  /* Light UI surfaces and hairlines */
+  --color-pale: #f3f8fe;
+  --color-pale-strong: #edf4fc;
+  --color-line: #d3e1f0;
+}
+
+/* Shared page container: keeps every section's content on the same vertical edges */
+@utility page-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-page);
+  padding-inline: 1.5rem;
+
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Lock page scroll while a modal dialog is open */
+html:has(dialog[open]:modal) {
+  overflow: hidden;
 }
 
 body {

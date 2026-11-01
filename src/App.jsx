@@ -22,7 +22,7 @@ export default function App() {
 
     const hash = window.location.hash;
     if (hash === "#about-us" || hash === "#why-we-succeed" || hash === "#machinery-list" || hash === "#machinery-list-from-products") return "about";
-    if (hash === "#products") return "products";
+    if (hash.startsWith("#products")) return "products";
     if (hash === "#gallery") return "gallery";
     if (hash === "#contact") return "contact";
     return "home";
@@ -36,7 +36,7 @@ export default function App() {
         setPage("about");
         return;
       }
-      if (hash === "#products") {
+      if (hash.startsWith("#products")) {
         setPage("products");
         return;
       }
@@ -68,9 +68,12 @@ export default function App() {
   useEffect(() => {
     if (page !== "products" && page !== "contact") return;
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Product cards link to a section, e.g. #products-gears
+      const section = page === "products" && routeHash !== "#products" && document.getElementById(routeHash.slice(1));
+      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }, [page]);
+  }, [page, routeHash]);
 
   useEffect(() => {
     if (page !== "about" || !["#why-we-succeed", "#machinery-list", "#machinery-list-from-products"].includes(window.location.hash)) return;

@@ -15,7 +15,7 @@ function ClientColumn({ heading, clients, twoColumns = false }) {
         }`}
       >
         {clients.map((logo) => (
-          <li key={logo} className="flex h-12 items-center">
+          <li key={logo} className="flex h-14 items-center">
             <img
               src={logo}
               className="max-h-14 max-w-[160px] object-contain"
@@ -32,7 +32,7 @@ export default function WhyUsClients() {
   return (
     <section
       id="why-us"
-      className="mx-auto max-w-7xl px-6 py-20 lg:px-10"
+      className="page-container py-20"
     >
       <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
         {/* Why Us */}
@@ -44,7 +44,7 @@ export default function WhyUsClients() {
           <ul className="mt-10 flex flex-col gap-8">
             {whyUs.map((item) => (
               <li key={item.title} className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center text-black">
+                <div className="flex h-10 w-10 shrink-0 justify-center text-navy">
                   <span
                     className="material-symbols-rounded text-[20px]"
                     aria-hidden="true"
@@ -58,7 +58,7 @@ export default function WhyUsClients() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 whitespace-pre-line text-left text-sm leading-relaxed text-slate">
+                  <p className="mt-1 whitespace-pre-line text-left text-sm leading-5 text-slate">
                     {item.description}
                   </p>
                 </div>
@@ -68,7 +68,7 @@ export default function WhyUsClients() {
 
           <a
             href="#about-us"
-            className="ml-4 mt-10 inline-block rounded-full border border-action px-6 py-3 text-sm font-semibold text-action transition-colors hover:bg-action hover:text-white"
+            className="ml-4 mt-10 inline-block rounded-full bg-action px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-hover"
           >
             Learn More About Us
           </a>

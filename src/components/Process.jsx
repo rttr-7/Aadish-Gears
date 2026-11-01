@@ -2,7 +2,7 @@ import { processSteps } from "../data/content";
 
 export default function Process() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section className="page-container py-20">
       <h2 className="font-display text-3xl font-bold text-navy sm:text-4xl">
         Our Process
       </h2>
@@ -15,11 +15,11 @@ export default function Process() {
               index !== 0 ? "lg:border-l lg:border-mist" : ""
             }`}
           >
-            <span className="text-xs font-semibold tracking-[0.14em] text-black">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] font-mono text-black">
               STEP {item.step}
             </span>
 
-            <div className="mt-4 flex h-11 w-11 items-center justify-center rounded-full bg-sky">
+            <div className="mt-4 flex h-11 w-11 items-center justify-center rounded-full bg-linear-to-b from-[#FFFFFF] to-[#C9DDF3]">
               <span
                 className="material-symbols-rounded text-black"
                 aria-hidden="true"
@@ -32,7 +32,7 @@ export default function Process() {
               {item.title}
             </h3>
 
-            <p className="mt-2 text-sm leading-relaxed text-slate">
+            <p className="mt-2 text-sm leading-5 text-slate">
               {item.description}
             </p>
           </li>

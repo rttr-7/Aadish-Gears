@@ -1,16 +1,13 @@
 import { industries } from "../data/content";
+import { panelGrid } from "../data/aboutContent";
 
 export default function Industries() {
   return (
     <section
       className="relative overflow-hidden bg-navy py-20"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-        backgroundSize: "44px 44px",
-      }}
+      style={panelGrid}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="page-container">
         <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
           Industries We Serve
         </h2>
@@ -96,7 +93,7 @@ export default function Industries() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-xs leading-relaxed text-slate sm:text-sm">
+                  <p className="mt-2 text-xs leading-5 text-slate sm:text-sm">
                     {item.description}
                   </p>
                 </div>
@@ -116,8 +113,8 @@ export default function Industries() {
         </div>
 
         <a
-          href="#gallery"
-          className="mt-10 inline-block rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+          href="#products"
+          className="mt-10 inline-block rounded-full border-2 border-white px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
         >
           See Our Work
         </a>
