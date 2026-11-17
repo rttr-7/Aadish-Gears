@@ -29,7 +29,7 @@ export default function TeamSection() {
         <div className="mt-10 overflow-x-auto">
           <img
             src={orgChart}
-            alt="Aadish Gears organisation chart: Director Atul Tanksale leads the Production In-charge (Dinesh Pandharkar), Design & Development (Snehal Bongagle), Quality and Accounts & HR; Production oversees the Machine, Gear and Assembly shops and Quality; Director Rupali Chivate leads Administration & Mgmt Rep and Stores & Consumables; Logistics, Purchase and Sales & Marketing complete the team."
+            alt="Aadish Gears organisation chart: Director Atul Tanksale leads the Production In-charge (Dinesh Pandharkar), Design & Development (Snehal Bongagle), Quality and Accounts & HR; Production oversees the Machine, Gear and Assembly shops and Quality; Director R S C leads Administration & Mgmt Rep and Stores & Consumables; Logistics, Purchase and Sales & Marketing complete the team."
             loading="lazy"
             decoding="async"
             className="block h-auto w-full min-w-[900px]"

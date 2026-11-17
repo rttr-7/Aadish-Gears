@@ -17,7 +17,7 @@ export default function AboutUs() {
       />
 
       <img
-        src="/Aadish-Gears/images/Gearsabtus.png"
+        src="/Aadish-Gears/images/Gearsabtus.webp"
         alt="Aadish Gears' precision gears, gearbox, and sprockets"
         className="block h-auto w-full"
       />
@@ -38,8 +38,10 @@ export default function AboutUs() {
           </div>
           <div className="flex h-[280px] items-center justify-center overflow-hidden">
             <img
-              src="/Aadish-Gears/images/Vision.png"
+              src="/Aadish-Gears/images/Vision.webp"
               alt="A hand placing a wooden block on a balanced stack, representing continuous development and growth"
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-contain"
             />
           </div>

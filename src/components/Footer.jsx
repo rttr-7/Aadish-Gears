@@ -70,11 +70,22 @@ export default function Footer() {
                 aria-label="Open Aadish Gears location and directions in Google Maps"
                 className="absolute inset-0 z-10"
               />
+              <a
+                href="https://www.google.com/maps/dir//Aadish+Gears+%26+Transmission+Pvt+Ltd+-+Transmission+Products+Manufacturer,+S.+No.+23%2F3%2F1+Mikat+No.+28%2F2+Wadekar+Industrial+Estate,+near+Siddhi+Chowk,+Narhe,+Pune,+Maharashtra+411041/@18.4480217,73.8307512,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bc2958fcb83f527:0x6c04d3d87819ea42!2m2!1d73.8259301!2d18.4380014"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Aadish Gears &amp; Transmission Pvt Ltd on Google Maps"
+                className="group absolute left-1/2 top-1/2 z-20 h-10 w-8 -translate-x-1/2 -translate-y-full"
+              >
+                <span className="pointer-events-none absolute bottom-full left-1/2 mb-1 w-max max-w-[170px] -translate-x-1/2 rounded-md bg-gray-900 px-2.5 py-1 text-center text-xs font-semibold leading-snug text-white shadow-lg">
+                  Aadish Gears &amp; Transmission Pvt Ltd
+                </span>
+              </a>
               <iframe
                 title="Aadish Gears Shop Location"
                 src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
                 className="h-[220px] w-full border-0 sm:h-[180px]"
-                loading="eager"
+                loading="lazy"
                 allowFullScreen=""
                 referrerPolicy="strict-origin-when-cross-origin"
               />

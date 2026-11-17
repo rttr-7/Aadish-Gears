@@ -20,6 +20,8 @@ function ClientColumn({ heading, clients, twoColumns = false }) {
               src={logo}
               className="max-h-14 max-w-[160px] object-contain"
               alt=""
+              loading="lazy"
+              decoding="async"
             />
           </li>
         ))}

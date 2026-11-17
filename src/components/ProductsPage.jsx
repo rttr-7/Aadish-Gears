@@ -388,7 +388,7 @@ export default function ProductsPage() {
       <ProductFeature
         id="products-sprockets"
         title="Sprockets"
-        image="/Aadish-Gears/images/Gallery/Sprockets.JPG"
+        image="/Aadish-Gears/images/Gallery/Sprockets.webp"
         alt="Precision sprockets"
         imageMaxWidth="max-w-[400px]"
         description="Our Company is specialized for Sprockets. We manufacture sprockets from 3/8” Pitch to 1” Pitch. We manufacture Simplex, Duplex, Triplex & Disc type Sprockets also. Sprockets with Taper Locking bush are also manufactured. We manufacture sprockets confirming to international standards and our sprockets are noise less and friction less. We have a fully developed range of Standard Sprockets confirming to British Standards. Sprockets confirming to other standards can also be manufactured by us."
@@ -403,7 +403,7 @@ export default function ProductsPage() {
         id="products-splines"
         spacing="pb-20 pt-10"
         title="Splines"
-        image="/Aadish-Gears/images/Gallery/SPLINE%20SHAFTS.jpg"
+        image="/Aadish-Gears/images/Gallery/SPLINE%20SHAFTS.webp"
         alt="Precision spline shafts"
         imageMaxWidth="max-w-[400px]"
         details={[

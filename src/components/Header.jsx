@@ -52,11 +52,18 @@ export default function Header() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [hoveredHeading, setHoveredHeading] = useState(null);
   const [hoveredSub, setHoveredSub] = useState(null);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileProductGroup, setMobileProductGroup] = useState(null);
+  const [mobileProductItem, setMobileProductItem] = useState(null);
 
   const goToProduct = (event, target) => {
     event.preventDefault();
     setProductsOpen(false);
     setHoveredSub(null);
+    setOpen(false);
+    setMobileProductsOpen(false);
+    setMobileProductGroup(null);
+    setMobileProductItem(null);
     window.sessionStorage.setItem("products-target", JSON.stringify(target));
     if (window.location.hash !== "#products") {
       window.sessionStorage.setItem("navigation-scroll", "top");
@@ -208,22 +215,155 @@ export default function Header() {
 
       {open && (
         <div className="border-t border-mist bg-white px-6 py-4 lg:hidden">
-          <nav className="flex flex-col gap-4">
-            {nav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(event) => {
-                  setOpen(false);
-                  handleNavigation(event, item.href);
-                }}
-                className={`text-sm ${
-                  active === item.href ? "font-bold text-action" : "font-medium text-slate hover:text-action"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="flex max-h-[calc(100dvh-5rem)] flex-col gap-4 overflow-y-auto">
+            {nav.map((item) => {
+              if (item.href === "#products") {
+                return (
+                  <div key={item.label}>
+                    <div className="flex items-center justify-between gap-4">
+                      <a
+                        href={item.href}
+                        onClick={(event) => {
+                          setOpen(false);
+                          handleNavigation(event, item.href);
+                        }}
+                        className={`text-sm ${
+                          active === item.href ? "font-bold text-action" : "font-medium text-slate hover:text-action"
+                        }`}
+                      >
+                        {item.label}
+                      </a>
+                      <button
+                        type="button"
+                        aria-expanded={mobileProductsOpen}
+                        aria-controls="mobile-product-categories"
+                        aria-label="Browse product categories"
+                        onClick={() => setMobileProductsOpen((isOpen) => !isOpen)}
+                        className="grid size-9 place-items-center rounded-md text-navy hover:bg-sky/30"
+                      >
+                        <span className="material-symbols-rounded" aria-hidden="true">
+                          {mobileProductsOpen ? "expand_less" : "expand_more"}
+                        </span>
+                      </button>
+                    </div>
+                    {mobileProductsOpen && (
+                      <div id="mobile-product-categories" className="mt-3 space-y-2">
+                        {productMenu.map((section, sectionIndex) => {
+                          const groupId = `mobile-product-group-${sectionIndex}`;
+
+                          return (
+                            <section key={section.heading} className="overflow-hidden rounded-lg border border-mist">
+                              <h3>
+                                <button
+                                  type="button"
+                                  aria-expanded={mobileProductGroup === sectionIndex}
+                                  aria-controls={groupId}
+                                  onClick={() => {
+                                    setMobileProductGroup((current) => current === sectionIndex ? null : sectionIndex);
+                                    setMobileProductItem(null);
+                                  }}
+                                  className="flex w-full items-center justify-between gap-3 bg-pale px-3 py-3 text-left text-sm font-semibold text-navy"
+                                >
+                                  {section.heading}
+                                  <span className="material-symbols-rounded text-lg" aria-hidden="true">
+                                    {mobileProductGroup === sectionIndex ? "expand_less" : "expand_more"}
+                                  </span>
+                                </button>
+                              </h3>
+                              {mobileProductGroup === sectionIndex && (
+                                <div id={groupId} className="space-y-2 px-3 py-2">
+                                  {section.items.map((productItem) => {
+                                    const productKey = `${sectionIndex}-${productItem.index}`;
+                                    const modelsId = `mobile-product-models-${productKey}`;
+                                    const productLink = (
+                                      <a
+                                        href="#products"
+                                        onClick={(event) =>
+                                          goToProduct(event, {
+                                            group: section.group,
+                                            index: productItem.index,
+                                            id: productItem.id,
+                                          })
+                                        }
+                                        className="block py-2 text-sm font-medium text-navy hover:text-action"
+                                      >
+                                        {productItem.label}
+                                      </a>
+                                    );
+
+                                    return (
+                                      <div key={productItem.label} className="border-b border-mist last:border-0">
+                                        {productItem.products.length > 0 ? (
+                                          <>
+                                            <div className="flex items-center justify-between gap-2">
+                                              {productLink}
+                                              <button
+                                                type="button"
+                                                aria-expanded={mobileProductItem === productKey}
+                                                aria-controls={modelsId}
+                                                aria-label={`Browse ${productItem.label} models`}
+                                                onClick={() =>
+                                                  setMobileProductItem((current) => current === productKey ? null : productKey)
+                                                }
+                                                className="grid size-9 shrink-0 place-items-center rounded-md text-navy hover:bg-sky/30"
+                                              >
+                                                <span className="material-symbols-rounded" aria-hidden="true">
+                                                  {mobileProductItem === productKey ? "expand_less" : "expand_more"}
+                                                </span>
+                                              </button>
+                                            </div>
+                                            {mobileProductItem === productKey && (
+                                              <div id={modelsId} className="mb-2 ml-3 border-l border-sky pl-3">
+                                                {productItem.products.map((product, productIndex) => (
+                                                  <a
+                                                    key={product.title}
+                                                    href="#products"
+                                                    onClick={(event) =>
+                                                      goToProduct(event, {
+                                                        group: section.group,
+                                                        index: productItem.index,
+                                                        product: productIndex,
+                                                      })
+                                                    }
+                                                    className="block py-2 text-sm text-slate hover:text-action"
+                                                  >
+                                                    {product.title}
+                                                  </a>
+                                                ))}
+                                              </div>
+                                            )}
+                                          </>
+                                        ) : productLink}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </section>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(event) => {
+                    setOpen(false);
+                    handleNavigation(event, item.href);
+                  }}
+                  className={`text-sm ${
+                    active === item.href ? "font-bold text-action" : "font-medium text-slate hover:text-action"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <a
               href="#contact"
               onClick={(event) => {
