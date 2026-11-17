@@ -2,43 +2,43 @@ import { useEffect, useRef, useState } from "react";
 import MainBanner from "./MainBanner";
 
 const products = [
-  { name: "AGTPL 765 KVA ES Gearbox", image: "AGTPL%20765%20KVA%20ES%20GEARBOX.png" },
-  { name: "EV Gearbox", image: "EV%20GEARBOX.png" },
-  { name: "AGTPL 765 KVA MS Gearbox", image: "AGTPL%20765%20KVA%20MS%20GEARBOX.png" },
-  { name: "Precision Gears", image: "Gears.JPG" },
-  { name: "Helical Gears", image: "HELICAL%20GEARS.png" },
-  { name: "ISO 0.5 H.P Gearbox", image: "ISO%200.5%20H.P%20GEARBOX.png" },
-  { name: "Inline Helical Gearbox", image: "INLINE%20HELICAL%20GEARBOX.png" },
-  { name: "ISO 1.0 H.P Gearbox", image: "ISO%201.0%20H.P%20GEARBOX.png" },
-  { name: "Niktish Assembly Gearbox", image: "NIKTISH%20ASM%20GEARBOX.png" },
-  { name: "Spur Gear", image: "SPUR%20GEAR.png" },
-  { name: "Sprockets", image: "Sprockets.JPG" },
-  { name: "NK 600 Helical Gearbox", image: "NK%20600%20HELICAL%20GEARBOX.png" },
-  { name: "Quarter Turn Gearbox", image: "QUARTER%20TURN%20GEARBOX.png" },
-  { name: "Spline Shafts", image: "SPLINE%20SHAFTS.jpg" },
-  { name: "Worm Gearbox", image: "WORM%20GEARBOX.png" },
-  { name: "NK 180 Helical Gearbox", image: "NK%20180%20HELICAL%20GEARBOX.png" },
+  { name: "AGTPL 765 KVA ES Gearbox", image: "AGTPL%20765%20KVA%20ES%20GEARBOX.webp" },
+  { name: "EV Gearbox", image: "EV%20GEARBOX.webp" },
+  { name: "AGTPL 765 KVA MS Gearbox", image: "AGTPL%20765%20KVA%20MS%20GEARBOX.webp" },
+  { name: "Precision Gears", image: "Gears.webp" },
+  { name: "Helical Gears", image: "HELICAL%20GEARS.webp" },
+  { name: "ISO 0.5 H.P Gearbox", image: "ISO%200.5%20H.P%20GEARBOX.webp" },
+  { name: "Inline Helical Gearbox", image: "INLINE%20HELICAL%20GEARBOX.webp" },
+  { name: "ISO 1.0 H.P Gearbox", image: "ISO%201.0%20H.P%20GEARBOX.webp" },
+  { name: "Niktish Assembly Gearbox", image: "NIKTISH%20ASM%20GEARBOX.webp" },
+  { name: "Spur Gear", image: "SPUR%20GEAR.webp" },
+  { name: "Sprockets", image: "Sprockets.webp" },
+  { name: "NK 600 Helical Gearbox", image: "NK%20600%20HELICAL%20GEARBOX.webp" },
+  { name: "Quarter Turn Gearbox", image: "QUARTER%20TURN%20GEARBOX.webp" },
+  { name: "Spline Shafts", image: "SPLINE%20SHAFTS.webp" },
+  { name: "Worm Gearbox", image: "WORM%20GEARBOX.webp" },
+  { name: "NK 180 Helical Gearbox", image: "NK%20180%20HELICAL%20GEARBOX.webp" },
   { name: "Worm Shafts", image: "WORM%20SHAFTS.jpg" },
-  { name: "Worm Gears & Worm Shafts", image: "Worm%20Gears%20&%20Worm%20Shafts.JPG" },
+  { name: "Worm Gears & Worm Shafts", image: "Worm%20Gears%20&%20Worm%20Shafts.webp" },
 ];
 
 const productionMachines = [
-  ["4 Axis VMC Machine", "1)%204%20AXIS%20VMC%20MACHINE.png"],
-  ["VMV Machine", "2)%20VMV%20MACHINE.jpeg"],
-  ["VMC Drill Tap Centre", "3)%20VMC%20DRILL%20TAP%20CENTRE.png"],
-  ["CNC Turning Machine", "4)%20CNC%20TURNING%20MACHINE%201.jpeg"],
-  ["Gear Hobbing Machine", "5)%20GEAR%20HOBBING%20MACHINE.jpeg"],
-  ["Gear Shaping Machine", "6)%20GEAR%20SHAPING%20MACHINE.png"],
-  ["Milling Machine", "7)%20MILLING%20MACHINE.png"],
-  ["Broaching Machine", "8)%20BROACHING%20MACHINE.jpeg"],
-  ["Polygon Lathe Machine", "9)%20POLYGON%20LATHE%20MACHINE.png"],
-  ["Keyway Machine", "10)%20KEYWAY%20MACHINE.png"],
-  ["Tapping Machine", "11)%20TAPPING%20MACHINE.png"],
-  ["Automatic Bandsaw Machine", "12)%20AUTOMATIC%20BANDSAW%20MACHINE.png"],
-  ["Bandsaw Machine", "13)%20BANDSAW%20MACHINE.jpeg"],
-  ["Vertical Slotting Machine", "14)%20VERTICAL%20SLOTTING%20MACHINE.jpeg"],
-  ["Radial Drilling Machine", "15)%20RADIAL%20DRILLING%20MACHINE.jpeg"],
-  ["Pillar Drill Machine", "16)%20PILLAR%20DRILL%20MACHINE.jpeg"],
+  ["4 Axis VMC Machine", "1)%204%20AXIS%20VMC%20MACHINE.webp"],
+  ["VMV Machine", "2)%20VMV%20MACHINE.webp"],
+  ["VMC Drill Tap Centre", "3)%20VMC%20DRILL%20TAP%20CENTRE.webp"],
+  ["CNC Turning Machine", "4)%20CNC%20TURNING%20MACHINE%201.webp"],
+  ["Gear Hobbing Machine", "5)%20GEAR%20HOBBING%20MACHINE.webp"],
+  ["Gear Shaping Machine", "6)%20GEAR%20SHAPING%20MACHINE.webp"],
+  ["Milling Machine", "7)%20MILLING%20MACHINE.webp"],
+  ["Broaching Machine", "8)%20BROACHING%20MACHINE.webp"],
+  ["Polygon Lathe Machine", "9)%20POLYGON%20LATHE%20MACHINE.webp"],
+  ["Keyway Machine", "10)%20KEYWAY%20MACHINE.webp"],
+  ["Tapping Machine", "11)%20TAPPING%20MACHINE.webp"],
+  ["Automatic Bandsaw Machine", "12)%20AUTOMATIC%20BANDSAW%20MACHINE.webp"],
+  ["Bandsaw Machine", "13)%20BANDSAW%20MACHINE.webp"],
+  ["Vertical Slotting Machine", "14)%20VERTICAL%20SLOTTING%20MACHINE.webp"],
+  ["Radial Drilling Machine", "15)%20RADIAL%20DRILLING%20MACHINE.webp"],
+  ["Pillar Drill Machine", "16)%20PILLAR%20DRILL%20MACHINE.webp"],
 ].map(([name, image]) => ({ name, image: `/Aadish-Gears/images/Gallery2/${image}` }));
 
 const machineryCategories = [
@@ -54,8 +54,8 @@ const machineryCategories = [
     featuredIndex: 0,
     description: "Dedicated assembly equipment supports consistent gearbox builds and repeatable production quality.",
     items: [
-      { name: "Semi-automatic Gearbox Assembly Line", image: "/Aadish-Gears/images/Assembly%20infra.png" },
-      { name: "Hydraulic Press", image: "/Aadish-Gears/images/Assembly%20Machinery/1.%20HYDRAULIC%20PRESS.png" },
+      { name: "Semi-automatic Gearbox Assembly Line", image: "/Aadish-Gears/images/Assembly%20infra.webp" },
+      { name: "Hydraulic Press", image: "/Aadish-Gears/images/Assembly%20Machinery/1.%20HYDRAULIC%20PRESS.webp" },
     ],
   },
   {
@@ -64,9 +64,9 @@ const machineryCategories = [
     featuredIndex: 15,
     description: "Inspection instruments and dedicated checking machines help verify dimensions and gear quality.",
     items: [
-      ["Worm Gear CD Machine", "1)%20WORM%20GEAR%20CD%20MACHINE.png"],
-      ["PCD Runout Checking Machine", "2)%20PCD%20RUNOUT%20CHECKING%20MACHINE.png"],
-      ["Hardness Tester", "3)%20HARDNESS%20TESTER.png"],
+      ["Worm Gear CD Machine", "1)%20WORM%20GEAR%20CD%20MACHINE.webp"],
+      ["PCD Runout Checking Machine", "2)%20PCD%20RUNOUT%20CHECKING%20MACHINE.webp"],
+      ["Hardness Tester", "3)%20HARDNESS%20TESTER.webp"],
     ].map(([name, image]) => ({ name, image: `/Aadish-Gears/images/Inspection%20Machinery/${image}` })),
   },
 ];
@@ -88,6 +88,8 @@ function GalleryTile({ name, image, aspect = "aspect-square", fit = "cover", onO
         <img
           src={image}
           alt={name}
+          loading="lazy"
+          decoding="async"
           className={`${aspect} block w-full bg-white object-${fit} transition-transform duration-300 group-hover:scale-[1.03]`}
         />
       ) : (
@@ -150,6 +152,8 @@ function ImageLightbox({ category, items, index, onIndexChange, onClose }) {
           <img
             src={item.image}
             alt={item.name}
+            loading="lazy"
+            decoding="async"
             className="block max-h-[calc(100dvh-15rem)] w-auto max-w-full rounded-xl border border-line bg-pale object-contain"
           />
         </div>

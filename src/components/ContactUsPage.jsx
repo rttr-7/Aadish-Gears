@@ -2,6 +2,21 @@ import React, { useState } from 'react';
 import MainBanner from './MainBanner';
 import { COUNTRIES } from '../data/countries';
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+
+function getPhoneError(phone, country) {
+  if (!/^[0-9+\-\s()]+$/.test(phone)) return 'Phone number can only contain digits, spaces, + - ( ).';
+  let digits = phone.replace(/\D/g, '');
+  if (country === 'India') {
+    if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+    else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+    if (!/^[6-9]\d{9}$/.test(digits)) return 'Please enter a valid 10-digit Indian mobile number.';
+    return null;
+  }
+  if (digits.length < 7 || digits.length > 15) return 'Please enter a valid phone number (7–15 digits).';
+  return null;
+}
+
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -24,8 +39,20 @@ export default function ContactUsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setSubmitStatus(null);
+
+    const email = formData.email.trim();
+    if (!EMAIL_PATTERN.test(email)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address (e.g. name@company.com).' });
+      return;
+    }
+    const phoneError = getPhoneError(formData.phone.trim(), formData.country);
+    if (phoneError) {
+      setSubmitStatus({ type: 'error', message: phoneError });
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const scriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL;
@@ -38,7 +65,7 @@ export default function ContactUsPage() {
         {
           method: 'POST',
           mode: 'no-cors',
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ ...formData, email, phone: formData.phone.trim() }),
           headers: {
             'Content-Type': 'text/plain'
           }
@@ -64,15 +91,15 @@ export default function ContactUsPage() {
   };
 
   const productImages = [
-    { id: 1, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.png", alt: "AGTPL 765 KVA ES Gearbox" },
-    { id: 2, src: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.png", alt: "EV Gearbox" },
-    { id: 3, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.png", alt: "AGTPL 765 KVA MS Gearbox" },
-    { id: 4, src: "/Aadish-Gears/images/Gallery/Gears.JPG", alt: "Precision Gears" },
-    { id: 5, src: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.png", alt: "Helical Gears" },
-    { id: 6, src: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.png", alt: "ISO 0.5 H.P Gearbox" },
-    { id: 7, src: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.png", alt: "Inline Helical Gearbox" },
-    { id: 8, src: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.png", alt: "ISO 1.0 H.P Gearbox" },
-    { id: 9, src: "/Aadish-Gears/images/Gallery/NIKTISH%20ASM%20GEARBOX.png", alt: "Niktish Assembly Gearbox" },
+    { id: 1, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.webp", alt: "AGTPL 765 KVA ES Gearbox" },
+    { id: 2, src: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.webp", alt: "EV Gearbox" },
+    { id: 3, src: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.webp", alt: "AGTPL 765 KVA MS Gearbox" },
+    { id: 4, src: "/Aadish-Gears/images/Gallery/Gears.webp", alt: "Precision Gears" },
+    { id: 5, src: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.webp", alt: "Helical Gears" },
+    { id: 6, src: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.webp", alt: "ISO 0.5 H.P Gearbox" },
+    { id: 7, src: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.webp", alt: "Inline Helical Gearbox" },
+    { id: 8, src: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.webp", alt: "ISO 1.0 H.P Gearbox" },
+    { id: 9, src: "/Aadish-Gears/images/Gallery/NIKTISH%20ASM%20GEARBOX.webp", alt: "Niktish Assembly Gearbox" },
   ];
 
   return (
@@ -128,6 +155,8 @@ export default function ContactUsPage() {
                 <input
                   type="email"
                   name="email"
+                  maxLength={150}
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
@@ -140,6 +169,9 @@ export default function ContactUsPage() {
                 <input
                   type="tel"
                   name="phone"
+                  inputMode="tel"
+                  maxLength={20}
+                  autoComplete="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
@@ -205,6 +237,8 @@ export default function ContactUsPage() {
                   <img
                     src={product.src}
                     alt={product.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-contain"
                   />
                 </div>
@@ -266,11 +300,22 @@ export default function ContactUsPage() {
                   aria-label="Open Aadish Gears location and directions in Google Maps"
                   className="absolute inset-0 z-10"
                 />
+                <a
+                  href="https://www.google.com/maps/dir//Aadish+Gears+%26+Transmission+Pvt+Ltd+-+Transmission+Products+Manufacturer,+S.+No.+23%2F3%2F1+Mikat+No.+28%2F2+Wadekar+Industrial+Estate,+near+Siddhi+Chowk,+Narhe,+Pune,+Maharashtra+411041/@18.4480217,73.8307512,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bc2958fcb83f527:0x6c04d3d87819ea42!2m2!1d73.8259301!2d18.4380014"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Aadish Gears &amp; Transmission Pvt Ltd on Google Maps"
+                  className="group absolute left-1/2 top-1/2 z-20 h-10 w-8 -translate-x-1/2 -translate-y-full"
+                >
+                  <span className="pointer-events-none absolute bottom-full left-1/2 mb-1 w-max max-w-[170px] -translate-x-1/2 rounded-md bg-gray-900 px-2.5 py-1 text-center text-xs font-semibold leading-snug text-white shadow-lg">
+                    Aadish Gears &amp; Transmission Pvt Ltd
+                  </span>
+                </a>
                 <iframe
                   title="Aadish Gears Shop Location"
                   src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s18.4380258,73.8256733!6i17"
                   className="h-[220px] w-full border-0 sm:h-[210px]"
-                  loading="eager"
+                  loading="lazy"
                   allowFullScreen=""
                   referrerPolicy="strict-origin-when-cross-origin"
                 />

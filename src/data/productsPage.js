@@ -1,7 +1,7 @@
 export const electricalIsolatorProducts = [
   {
     title: "AGTPL 765 KVA E/S Gearbox",
-    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20ES%20GEARBOX.webp",
     bullets: [
       "Motor details: 1.0 HP foot mounting, 1400 RPM",
       "Aadish Gears designed",
@@ -13,7 +13,7 @@ export const electricalIsolatorProducts = [
   },
   {
     title: "AGTPL 765 KVA M/S Gearbox",
-    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/AGTPL%20765%20KVA%20MS%20GEARBOX.webp",
     bullets: [
       "Motor details: 1.0 HP foot mounting, 1400 RPM",
       "Aadish Gears designed",
@@ -25,7 +25,7 @@ export const electricalIsolatorProducts = [
   },
   {
     title: "ISO 0.5 HP Gearbox",
-    image: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/ISO%200.5%20H.P%20GEARBOX.webp",
     bullets: [
       "Motor details: 0.5 HP foot mounting, 1400 RPM",
       "Customer designed",
@@ -36,7 +36,7 @@ export const electricalIsolatorProducts = [
   },
   {
     title: "ISO 1.0 HP Gearbox",
-    image: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/ISO%201.0%20H.P%20GEARBOX.webp",
     bullets: [
       "Motor details: 1.0 HP foot mounting, 1400 RPM",
       "Customer designed",
@@ -50,7 +50,7 @@ export const electricalIsolatorProducts = [
 export const helicalGearboxProducts = [
   {
     title: "NK 600 Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/NK%20600%20HELICAL%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/NK%20600%20HELICAL%20GEARBOX.webp",
     bullets: [
       "With Dual Output Shaft",
       "Can be operated both by Motor as well as Manually",
@@ -62,7 +62,7 @@ export const helicalGearboxProducts = [
   },
   {
     title: "NK 180 Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/NK%20180%20HELICAL%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/NK%20180%20HELICAL%20GEARBOX.webp",
     bullets: [
       "Single Output Shaft",
       "Can be operated both by Motor as well as Manually",
@@ -74,7 +74,7 @@ export const helicalGearboxProducts = [
   },
   {
     title: "Inline Helical Gearbox",
-    image: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/INLINE%20HELICAL%20GEARBOX.webp",
     bullets: [
       "Aadish Gears Designed",
       "Reduction Ratio: 1:68.66",
@@ -90,7 +90,7 @@ export const gearboxes = [
   {
     label: "EV Gear Boxes",
     title: "EV Gearbox",
-    image: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/EV%20GEARBOX.webp",
     bullets: [
       "Aadish Gears Designed",
       "Type of Gear Box: Helical suitable for high RPM Motor (6000 RPM)",
@@ -102,7 +102,7 @@ export const gearboxes = [
   {
     label: "Worm Gear Boxes",
     title: "Worm Gearbox",
-    image: "/Aadish-Gears/images/Gallery/WORM%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/WORM%20GEARBOX.webp",
     bullets: [
       "Motor Details: Suitable for 0.5 HP Motor",
       "Aadish Gears Designed",
@@ -114,7 +114,7 @@ export const gearboxes = [
   {
     label: "Quarter Turn Gear Boxes",
     title: "Quarter Turn Gearbox",
-    image: "/Aadish-Gears/images/Gallery/QUARTER%20TURN%20GEARBOX.png",
+    image: "/Aadish-Gears/images/Gallery/QUARTER%20TURN%20GEARBOX.webp",
     bullets: [
       "Heavy Duty",
       "CI Casting Housing",
@@ -129,7 +129,7 @@ export const gearTypes = [
   {
     label: "Spur Gears",
     title: "Spur Gears",
-    image: "/Aadish-Gears/images/Gallery/SPUR%20GEAR.png",
+    image: "/Aadish-Gears/images/Gallery/SPUR%20GEAR.webp",
     bullets: [
       "The Spur Gears can be manufactured from 0.8 Module to 6 Module with a minimum outside diameter of 8 mm to 400 mm",
       "We can also design Gears as per the customer’s requirement",
@@ -143,7 +143,7 @@ export const gearTypes = [
   {
     label: "Helical Gears",
     title: "Helical Gears",
-    image: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.png",
+    image: "/Aadish-Gears/images/Gallery/HELICAL%20GEARS.webp",
     bullets: [
       "All type of Helical Gears",
       "Maximum OD 350 mm, Minimum OD 20mm",
@@ -156,7 +156,7 @@ export const gearTypes = [
   {
     label: "Worm Gears",
     title: "Worm Gears",
-    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.JPG",
+    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.webp",
     bullets: [
       "All type of Worm Gears",
       "Maximum OD 350 mm, Minimum OD 20mm",
@@ -169,7 +169,7 @@ export const gearTypes = [
   {
     label: "Internal Gears",
     title: "Internal Gears",
-    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.JPG",
+    image: "/Aadish-Gears/images/Gallery/Worm%20Gears%20&%20Worm%20Shafts.webp",
     bullets: [],
     description: [
       "We can manufacture Internal Gear having minimum ID of 30 mm. The internal gears can be manufactured from 0.5 module capacity to 3 Module Capacity. Internal Gears having smaller ID,s can also be manufactured by way of Broaching.",

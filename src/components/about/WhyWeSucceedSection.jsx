@@ -15,33 +15,33 @@ const styles = `
 
 const TAB_IMAGES = [
   {
-    src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.png",
+    src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.webp",
     alt: "Manufacturing equipment for precision gear production",
   },
   {
-    src: "/Aadish-Gears/images/Assembly%20Machinery/2.%20SEMI%20AUTOMATIC%20GEARBOX%20ASSEMBLY%20LINE.png",
+    src: "/Aadish-Gears/images/Assembly%20Machinery/2.%20SEMI%20AUTOMATIC%20GEARBOX%20ASSEMBLY%20LINE.webp",
     alt: "Semi-automatic gearbox assembly line",
   },
   {
-    src: "/Aadish-Gears/images/Inspection%20Machinery/2)%20PCD%20RUNOUT%20CHECKING%20MACHINE.png",
+    src: "/Aadish-Gears/images/Inspection%20Machinery/2)%20PCD%20RUNOUT%20CHECKING%20MACHINE.webp",
     alt: "PCD runout checking machine used for quality inspection",
   },
   {
-    src: "/Aadish-Gears/images/Infrasturcture%20people.png",
+    src: "/Aadish-Gears/images/Infrasturcture%20people.webp",
     alt: "Precision gears and components",
   },
   {
-    src: "/Aadish-Gears/images/Future.png",
+    src: "/Aadish-Gears/images/Future.webp",
     alt: "A young plant growing, representing future growth",
   },
 ];
 
 const GALLERY2_IMAGES = [
-  { src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.png", alt: "4 Axis VMC Machine" },
-  { src: "/Aadish-Gears/images/Gallery2/3)%20VMC%20DRILL%20TAP%20CENTRE.png", alt: "VMC Drill Tap Centre" },
-  { src: "/Aadish-Gears/images/Gallery2/9)%20POLYGON%20LATHE%20MACHINE.png", alt: "Polygon Lathe Machine" },
-  { src: "/Aadish-Gears/images/Gallery2/12)%20AUTOMATIC%20BANDSAW%20MACHINE.png", alt: "Automatic Bandsaw Machine" },
-  { src: "/Aadish-Gears/images/Gallery2/11)%20TAPPING%20MACHINE.png", alt: "Tapping Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/1)%204%20AXIS%20VMC%20MACHINE.webp", alt: "4 Axis VMC Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/3)%20VMC%20DRILL%20TAP%20CENTRE.webp", alt: "VMC Drill Tap Centre" },
+  { src: "/Aadish-Gears/images/Gallery2/9)%20POLYGON%20LATHE%20MACHINE.webp", alt: "Polygon Lathe Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/12)%20AUTOMATIC%20BANDSAW%20MACHINE.webp", alt: "Automatic Bandsaw Machine" },
+  { src: "/Aadish-Gears/images/Gallery2/11)%20TAPPING%20MACHINE.webp", alt: "Tapping Machine" },
 ];
 
 function InventoryDialog({ onClose, category, title, items, columns, entryLabel, maxWidth, minTableWidth }) {
